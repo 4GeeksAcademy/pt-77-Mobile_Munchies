@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 // import { LoadScript } from '@react-google-maps/api';
 
@@ -47,13 +47,13 @@ export function MapVisual() {
         <>
 
             {/* <LoadScript googleMapsApiKey={import.meta.env.VITE_BACKEND_URL} > */}
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={10}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                />
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={10}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+            />
             {/* </LoadScript> */}
             { /* Child components, such as markers, info windows, etc. */}
             <></>
@@ -66,4 +66,4 @@ export function MapVisual() {
 
 
 
-export default React.memo(GoogleMap)
+export default React.memo(MapVisual)
