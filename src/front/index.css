@@ -1,0 +1,16 @@
+.logo{
+    height: 90px;
+    width: 100px;
+}
+.rating{
+    float:left;
+    margin-left:50px;
+}
+.merch{
+    float:right;
+    margin-right:50px;
+}
+.amazon{
+    height:200px;
+    width:200px;
+}
