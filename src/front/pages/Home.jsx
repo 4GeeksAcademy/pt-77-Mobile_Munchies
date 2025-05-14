@@ -41,7 +41,14 @@ export const Home = () => {
 				<img src={rigoImageUrl} className="img-fluid rounded-circle mb-3" alt="Rigo Baby" />
 			</p>
 			{/* <MapVisual/> */}
-			<MapVisual/>
+			<MapVisual
+				FoodTruckName="The Baconator"
+				address="1600 Amphitheatre Parkway, Mountain View, CA"
+			/>
+			<MapVisual
+				FoodTruckName="The Silent Killer"
+				address="10600 Okeechobee Blvd, West Palm Beach, FL"
+			/>
 			<div className="alert alert-info">
 				{store.message ? (
 					<span>{store.message}</span>

@@ -1,6 +1,5 @@
-import React, { memo } from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-// import { LoadScript } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '400px',
@@ -12,15 +11,16 @@ const initialCenter = {
     lng: -38.523
 };
 
-export function MapVisual() {
-    const google = window.google = window.google ? window.google : {}
+export function MapVisual({FoodTruckName}) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: import.meta.env.GOOGLE_API_KEY
-    })
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+    });
 
-    const [map, setMap] = React.useState(null)
+    const [map, setMap] = React.useState(null);
     const [center, setCenter] = React.useState(initialCenter);
+    const [markerPosition, setMarkerPosition] = React.useState(null);
+    const [infoText, setInfoText] = React.useState('');
 
     const onLoad = React.useCallback(function callback(map) {
         setMap(map);
@@ -30,40 +30,76 @@ export function MapVisual() {
         setMap(null);
     }, []);
 
-    // Function to refocus map center
     const refocusMap = (newCenter) => {
         if (map) {
-            setCenter(newCenter); // Update the center state
-            map.panTo(newCenter); // Move the map to the new center
+            setCenter(newCenter);
+            map.panTo(newCenter);
         }
+    };
+
+    const refocusToAddress = (address) => {
+        if (!window.google || !window.google.maps) return;
+
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({ address }, (results, status) => {
+            console.log("Geocode result:", { results, status });
+
+            if (status === 'OK' && results[0]) {
+                const location = results[0].geometry.location;
+                const latLng = {
+                    lat: location.lat(),
+                    lng: location.lng()
+                };
+                refocusMap(latLng);
+                setMarkerPosition(latLng);
+                setInfoText(address); // Show the address as custom text
+            } else {
+                console.error('Geocode failed:', status);
+            }
+        });
     };
 
     const handleRefocusClick = () => {
         const newCenter = { lat: 37.7749, lng: -122.4194 }; // San Francisco
         refocusMap(newCenter);
+        setMarkerPosition(newCenter);
+        setInfoText('San Francisco');
+    };
+
+    const handleRefocusToAddressClick = () => {
+        refocusToAddress('1600 Amphitheatre Parkway, Mountain View, CA');
     };
 
     return isLoaded ? (
         <>
-
-            {/* <LoadScript googleMapsApiKey={import.meta.env.VITE_BACKEND_URL} > */}
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
                 zoom={10}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
-            />
-            {/* </LoadScript> */}
-            { /* Child components, such as markers, info windows, etc. */}
-            <></>
+            >
+                {markerPosition && (
+                    <Marker position={markerPosition}>
+                        <InfoWindow position={markerPosition}>
+                            <div>
+                                <strong>{FoodTruckName}</strong>
+                                <br />
+                                {infoText}
+                            </div>
+                        </InfoWindow>
+                    </Marker>
+                )}
+            </GoogleMap>
+
             <button onClick={handleRefocusClick}>
                 Refocus to San Francisco
             </button>
+            <button onClick={handleRefocusToAddressClick}>
+                Refocus to Google HQ
+            </button>
         </>
-    ) : <></>
+    ) : <></>;
 }
 
-
-
-export default React.memo(MapVisual)
+export default React.memo(MapVisual);
