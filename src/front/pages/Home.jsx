@@ -7,6 +7,20 @@ import MapVisual from "../components/MapVisual.jsx";
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
+	const foodTrucks = [
+		{
+			name: "The Rolling Taco",
+			address: "123 Main St, Austin, TX 78701"
+		},
+		{
+			name: "Burger Bus",
+			address: "456 Elm St, Denver, CO 80220"
+		},
+		{
+			name: "Curry Cruiser",
+			address: "789 Oak Ave, San Jose, CA 95110"
+		}
+	];
 
 	const loadMessage = async () => {
 		try {
@@ -49,6 +63,21 @@ export const Home = () => {
 				FoodTruckName="The Silent Killer"
 				address="10600 Okeechobee Blvd, West Palm Beach, FL"
 			/>
+			<MapVisual
+				FoodTruckName="The Roadhouse"
+				address="21699-A FL-7, Boca Raton, FL 33428"
+			/>
+
+			{foodTrucks?.map((truck, index) => (
+				<div key={index}>
+					<MapVisual
+						FoodTruckName={truck.name}
+						address={truck.address}
+					/>
+				</div>
+
+			))}
+
 			<div className="alert alert-info">
 				{store.message ? (
 					<span>{store.message}</span>

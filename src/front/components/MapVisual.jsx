@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -11,7 +11,7 @@ const initialCenter = {
     lng: -38.523
 };
 
-export function MapVisual({FoodTruckName}) {
+export function MapVisual({FoodTruckName, address}) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -59,6 +59,12 @@ export function MapVisual({FoodTruckName}) {
         });
     };
 
+    useEffect(() => {
+        if(isLoaded) {
+            handleRefocusToAddressClick();
+        }
+    },[isLoaded])
+    
     const handleRefocusClick = () => {
         const newCenter = { lat: 37.7749, lng: -122.4194 }; // San Francisco
         refocusMap(newCenter);
@@ -67,7 +73,7 @@ export function MapVisual({FoodTruckName}) {
     };
 
     const handleRefocusToAddressClick = () => {
-        refocusToAddress('1600 Amphitheatre Parkway, Mountain View, CA');
+        refocusToAddress(`Address:${address}`);
     };
 
     return isLoaded ? (
