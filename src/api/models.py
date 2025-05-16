@@ -31,7 +31,7 @@ class Vendor(db.Model):
     price: Mapped[int] = mapped_column(nullable=False)
     picture: Mapped[str] = mapped_column(nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
-
+    calendly_url: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
     bookings=relationship("Booking", back_populates="vendor")
 
 
@@ -43,7 +43,8 @@ class Vendor(db.Model):
             "address": self.address,
             "price": self.price,
             "picture": self.picture,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "calendly_url": self.calendly_url
             # do not serialize the password, its a security breach
         }
     
