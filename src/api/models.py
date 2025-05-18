@@ -33,7 +33,7 @@ class Vendor(db.Model):
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
     calendly_url: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
     bookings=relationship("Booking", back_populates="vendor")
-
+    
 
     def serialize(self):
         return {
