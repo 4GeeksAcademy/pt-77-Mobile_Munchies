@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 
-const preventRefresh = (e) => {
-	e.preventDefault();
-};
-
 export const LogIn = () => {
+
+	const [showPassword, setShowPassword] = useState(false);
+
+	const preventRefresh = (e) => {
+		e.preventDefault();
+	};
+
+	const toggleVisibility = (setter) => {
+		setter((prev) => !prev);
+	};
 	return (
 		<div className="wrapper signIn">
 			<div className="form">
@@ -15,12 +21,16 @@ export const LogIn = () => {
 						<label htmlFor="email">E-Mail Address:</label>
 						<input type="email" id="email" placeholder="Enter your E-Mail" />
 					</div>
-					<div>
+					<div style={{ position: "relative" }}>
 						<label htmlFor="password">Password:</label>
-						<input type="password" id="password" placeholder="Enter password" />
+						<input  type={showPassword ? "text" : "password"} id="password" placeholder="Enter password" />
+						<i
+							className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+							onClick={() => toggleVisibility(setShowPassword)}
+						></i>
 					</div>
-					<button type="submit" onClick={preventRefresh}>
-						Submit
+					<button type="Submit" onClick={preventRefresh}>
+						LOGIN
 					</button>
 				</form>
 				<p>
