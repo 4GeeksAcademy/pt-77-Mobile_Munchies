@@ -23,6 +23,7 @@ def handle_hello():
 
 # Get all Vendors
 
+
 @api.route('/vendors', methods=['GET'])
 def handle_get_vendor():
     vendor = Vendor.query.all()
@@ -31,12 +32,14 @@ def handle_get_vendor():
 
 # Get a single Vendor
 
+
 @api.route('/vendors/<int:vendor_id>', methods=['GET'])
 def handle_get_each_vendor(vendor_id):
     vendor = Vendor.query.get(vendor_id)
     return jsonify(vendor.serialize()), 200
 
 # Post/Create a Vendor
+
 
 @api.route('/vendor/signup', methods=['POST'])
 def vendor_signup():
@@ -49,8 +52,12 @@ def vendor_signup():
     is_active = request.json.get("is_active", None)
     calendly_url = request.json.get("calendly_url", "None")
 
-    vendor = User(title=title, email=email, password=password, address=address,
-                  price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
+
+    if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
+        return jsonify({"msg": "Some fields are missing in your request"})
+
+    vendor = Vendor(title=title, email=email, password=password, address=address,
+                    price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
     db.session.add(vendor)
     db.session.commit()
     return jsonify(vendor.serialize()), 200
@@ -59,30 +66,34 @@ def vendor_signup():
 
 @api.route('/vendors/<int:vendor_id>', methods=['PUT'])
 def update_vendor(vendor_id):
-    if vendor_id not in Vendor:
-        return jsonify({"error": "Vendor not found"}), 404
+    title = request.json.get("title")
+    email = request.json.get("email")
+    address = request.json.get("address")
+    price = request.json.get("price")
+    picture = request.json.get("picture")
+    is_active = request.json.get("is_active")
+    calendly_url = request.json.get("calendly_url")
 
-        data = request.get_json()
-    title = data['title']
-    email = data['email']
-    password = data['password']
-    address = data['address']
-    price = data['price']
-    picture = data['picture']
-    is_active = data['is_active']
-    calendly_url = data['calendly_url']
+    if title is None or email is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
+        return jsonify({"msg": "Some fields are missing in your request"})
 
-    if (title != "") Vendor[vendor_id]['title'] = data['title']
-    if (email != "") Vendor[vendor_id]['email'] = data['email']
-    if (password != "") Vendor[vendor_id]['password'] = data['password']
-    if (address != "") Vendor[vendor_id]['address'] = data['address']
-    if (price != "") Vendor[vendor_id]['price'] = data['price']
-    if (picture != "") Vendor[vendor_id]['picture'] = data['picture']
-    if (is_active != "") Vendor[vendor_id]['is_active'] = data['is_active']
-    if (calendly_url != "") Vendor[vendor_id]['calendly_url'] = data['calendly_url']
-    return jsonify({"message": "Vendor updated", "vendor": Vendor[vendor_id]}), 200
+    vendor = Vendor.query.get(vendor_id)
+    if vendor is None:
+        return jsonify({"msg": "vendor not found"})
+
+    vendor.title = title
+    vendor.email = email
+    vendor.address = address
+    vendor.price = price
+    vendor.picture = picture
+    vendor.is_active = is_active
+    vendor.calendly_url = calendly_url
+
+    db.session.commit()
+    return jsonify(vendor.serialize()), 200
 
 # Delete a Vendor
+
 
 @api.route('/vendor/<int:vendor_id>', methods=['DELETE'])
 def delete_vendor(vendor_id):
