@@ -19,21 +19,20 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "is_active": self.is_active
-            # do not serialize the password, its a security breach
         }
     
 class Vendor(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False)
-    email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
+    email: Mapped[str] = mapped_column(String(120), nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
     address: Mapped[str] = mapped_column(nullable=False)
     price: Mapped[int] = mapped_column(nullable=False)
     picture: Mapped[str] = mapped_column(nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
-    calendly_url: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
+    calendly_url: Mapped[str] = mapped_column(String(120), nullable=False)
     bookings=relationship("Booking", back_populates="vendor")
-
+    
 
     def serialize(self):
         return {
@@ -45,7 +44,9 @@ class Vendor(db.Model):
             "picture": self.picture,
             "is_active": self.is_active,
             "calendly_url": self.calendly_url
-            # do not serialize the password, its a security breach
+            # do not serialize 
+            # 
+            # the password, its a security breach
         }
     
 class Booking(db.Model):
