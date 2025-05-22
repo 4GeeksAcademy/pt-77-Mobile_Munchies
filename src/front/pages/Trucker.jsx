@@ -40,7 +40,7 @@ export const TruckersignUp = () => {
               onClick={() => toggleVisibility(setShowPassword)}
             ></i>
           </div>
-          <button type="submit" onClick={preventRefresh}>SIGN UP</button>
+          <button type="submit"  method="POST" onClick={preventRefresh}>SIGN UP</button>
           <h2 align="center" className="or">OR</h2>
         </form>
         <p>
