@@ -6,6 +6,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from werkzeug.security import generate_password_hash
+from flask_cors import cross_origin
 
 api = Blueprint('api', __name__)
 
@@ -19,7 +21,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 @api.route('/token', methods=['POST'])
-def create_token9():
+def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     if email != "test" or password != "test":
@@ -27,3 +29,30 @@ def create_token9():
     
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
+
+@api.route('/signup', methods=['POST'])
+@cross_origin(origin="https://miniature-zebra-g4xw6c9j7r-3000.app.github.dev")
+def signup():
+    data = request.get_json()
+    email = data.get("email")
+    password = data.get("password")
+
+    if not email or not password:
+        return jsonify({"message": "Email and password required"}), 400
+
+    # Check if user already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"message": "User already exists"}), 409
+    
+    hashed_password = generate_password_hash(password)
+    new_user = User(email=email, password=hashed_password)
+
+    # Create new user
+    new_user = User(email=email, password=password, is_active=True)
+    db.session.add(new_user)
+    db.session.commit()
+
+
+    return jsonify({"message": "User registered successfully"}), 201
+
