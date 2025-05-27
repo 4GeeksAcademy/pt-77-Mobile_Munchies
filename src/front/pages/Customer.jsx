@@ -19,6 +19,7 @@ export const CustomersignUp = () => {
   const data = await res.json();
   alert(data.message);
   };
+  
 
   const toggleVisibility = (setter) => {
     setter((prev) => !prev);
@@ -28,7 +29,7 @@ export const CustomersignUp = () => {
   return (
     <div className="wrapper signUp">
       <form onSubmit={handleSignup} className="form">
-        <div className="heading">CREATE A CUSTOMER ACCOUNT</div>
+        <div className="heading">CREATE CUSTOMER ACCOUNT</div>
           <div>
             <label htmlFor="name">Name:</label>
             <input type="text" 

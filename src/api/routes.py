@@ -21,14 +21,26 @@ def handle_hello():
     return jsonify(response_body), 200
 
 @api.route('/token', methods=['POST'])
-def create_token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
-    
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+def token():
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
+
+        if not email or not password:
+            return jsonify({"msg": "Missing email or password"}), 400
+
+        user = User.query.filter_by(email=email).first()
+        if not user or user.password != password:
+            return jsonify({"msg": "Bad credentials"}), 401
+        
+        access_token = create_access_token(identity=user.id)
+        return jsonify(access_token=access_token)
+
+    except Exception as e:
+        print("Error in /api/token:", e)
+        return jsonify({"error": "Internal Server Error"}), 500
+
 
 @api.route('/signup', methods=['POST'])
 @cross_origin(origin="https://miniature-zebra-g4xw6c9j7r-3000.app.github.dev")
@@ -40,15 +52,17 @@ def signup():
     if not email or not password:
         return jsonify({"message": "Email and password required"}), 400
 
-    # Check if user already exists
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({"message": "User already exists"}), 409
     
     hashed_password = generate_password_hash(password)
-    new_user = User(email=email, password=hashed_password)
+    new_user = User(
+        email=email,
+        password=hashed_password,
+        is_active=True
+    )
 
-    # Create new user
     new_user = User(email=email, password=password, is_active=True)
     db.session.add(new_user)
     db.session.commit()
