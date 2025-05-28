@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
@@ -7,19 +7,12 @@ export const LogIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(null);
+
   const token = sessionStorage.getItem("token");
 
   const toggleVisibility = (setter) => {
     setter((prev) => !prev);
   };
-
-  useEffect(() => {
-    const storedName = sessionStorage.getItem("userName");
-    if (storedName) {
-      setUserName(storedName);
-    }
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,8 +50,8 @@ export const LogIn = () => {
       <div className="form">
         <div className="heading">LOGIN</div>
 
-        {(token && userName) ? (
-          <p>Welcome, {userName}!</p>
+        {(token && token !== "" && token !== undefined) ? (
+          <p>You are now logged in!</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div>
