@@ -7,20 +7,7 @@ export const GoogleMapTest = () => {
     // Access the global state and dispatch function using the useGlobalReducer hook.
     const { store, dispatch } = useGlobalReducer()
 
-    const foodTrucks = [
-        {
-            name: "The Rolling Taco",
-            address: "123 Main St, Austin, TX 78701"
-        },
-        {
-            name: "Burger Bus",
-            address: "456 Elm St, Denver, CO 80220"
-        },
-        {
-            name: "Curry Cruiser",
-            address: "789 Oak Ave, San Jose, CA 95110"
-        }
-    ];
+
 
     const loadMessage = async () => {
         try {
@@ -53,27 +40,36 @@ export const GoogleMapTest = () => {
             <h1>Google Map Test</h1>
             <div className="text-center mt-5">
 
-                {/* <MapVisual/> */}
-                <MapVisual
-                    FoodTruckName="The Baconator"
-                    address="1600 Amphitheatre Parkway, Mountain View, CA"
-                />
-                <MapVisual
-                    FoodTruckName="The Silent Killer"
-                    address="10600 Okeechobee Blvd, West Palm Beach, FL"
-                />
-                <MapVisual
-                    FoodTruckName="The Roadhouse"
-                    address="21699-A FL-7, Boca Raton, FL 33428"
-                />
-
-                {foodTrucks?.map((truck, index) => (
-                    <div key={index}>
-                        <MapVisual
+                {store.foodTrucks?.map((truck, index) => (
+                    <div className="d-flex row mt-3" key={index}>
+                        <div className="col-3">
+                            <img src="https://picsum.photos/200"/>
+                        </div>
+                        <div className="d-flex col-6 row">
+                            <div className="col-6">
+                                <h2>{truck.name}</h2>
+                                <h4>{truck.address}</h4>
+                                <h4>{truck.price}</h4>
+                            </div>
+                            <div className="col-6">
+                                <div></div>
+                                <button>Book Now!</button>
+                            </div>
+                        </div>
+                        <div className="col-3">
+                            <MapVisual
                             FoodTruckName={truck.name}
                             address={truck.address}
                         />
+                        </div>
+                        
+                        
+                    
+
+                        
                     </div>
+
+                    
 
                 ))}
 

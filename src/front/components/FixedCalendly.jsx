@@ -42,8 +42,8 @@ export const FixedCalendly = ({ url }) => {
   return (
     <div 
       id="calendly-inline-widget" 
-      className="min-h-screen w-full"
-      style={{ minHeight: '650px' }}
+      // className="h-100"
+      style={{ height: '730px', position: "relative" }}
     ></div>
   );
 };

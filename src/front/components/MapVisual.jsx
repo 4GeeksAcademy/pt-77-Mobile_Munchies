@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
-    width: '400px',
-    height: '400px'
+    width: '80%',
+    height: '80%'
 };
 
 const initialCenter = {
@@ -99,11 +99,11 @@ export function MapVisual({FoodTruckName, address}) {
             </GoogleMap>
 
             <button onClick={handleRefocusClick}>
-                Refocus to San Francisco
+                x
             </button>
-            <button onClick={handleRefocusToAddressClick}>
+            {/* <button onClick={handleRefocusToAddressClick}>
                 Refocus to Google HQ
-            </button>
+            </button> */}
         </>
     ) : <></>;
 }
