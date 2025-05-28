@@ -1,3 +1,83 @@
+.wrapper p {
+    font-size: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.form {
+    padding: 1.5rem;
+    -ms-flex-preferred-size: 100vw;
+    flex-basis: 100vw;
+}
+
+.form .heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.or {
+    margin: 1rem 0;
+}
+.form label {
+    display: block;
+    margin: 1.25rem 0 1rem 0;
+}
+i.fa-solid.fa-eye-slash{
+    display: flex;
+    justify-content: end;
+    margin-top: 5px;
+    font-size: 20px;
+}
+i.fa-solid.fa-eye {
+    display: flex;
+    justify-content: end;
+    margin-top: 5px;
+    font-size: 20px;
+}
+.form input {
+    height: 40px;
+    width: 100%;
+    padding: 15px;
+    background-color: #f1f9ff;
+    border: 2px solid #bce0fd;
+    border-radius: 8px;
+}
+
+.form button {
+    height: 40px;
+    width: 100%;
+    background-color: #e91818;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+}
+
+@media (min-width: 542px) {
+  .wrapper {
+    justify-content: center;
+    margin: auto;
+    border-style: solid;
+    border-radius: 10px;
+    width: 20%;
+    margin-top: 5%;
+    }
+    .form {
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    }
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
 .logo{
     height: 90px;
     width: 100px;
@@ -32,4 +112,5 @@
 .merchTitle4{
     margin-left: 615px;
     
+
 }

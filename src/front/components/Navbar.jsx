@@ -1,6 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
+	const navigate = useNavigate();
+	const isLoggedIn = sessionStorage.getItem("token") !== null;
+
+	const handleLogout = () => {
+		sessionStorage.removeItem("token");
+		navigate("/login");
+	};
 
 	return (
 		<nav className="navbar navbar-light bg-light"
@@ -17,6 +24,21 @@ export const Navbar = () => {
 				</h1>
 				
 				<div className="ml-auto">
+					{!isLoggedIn && (
+						<>
+							<Link className="btn btn-primary login me-2" to="/login">
+								Login
+							</Link>
+							<Link className="btn btn-primary signup me-2" to="/signup">
+								Signup
+							</Link>
+						</>
+					)}
+					{isLoggedIn && (
+						<button className="btn btn-danger" onClick={handleLogout}>
+							Log Out
+						</button>
+					)}
 					<div className="merch">
 			<Link to="/components/Merch">
 			<button type="button" class="btn btn-danger">Merch</button>
