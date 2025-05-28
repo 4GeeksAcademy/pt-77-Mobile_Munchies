@@ -28,9 +28,6 @@ export const Navbar = () => {
 					<Link to="/googlemaptest">
 						<button className="btn btn-primary">Google Maps</button>
 					</Link>
-					<Link to="/calendlypages">
-						<button className="btn btn-primary">Calendly Pages</button>
-					</Link>
 				</div>
 			</div>
 		</nav>

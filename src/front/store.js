@@ -5,6 +5,8 @@ export const initialStore = () => {
       {
         name: "Sunset Smash",
         address: "11941 San Vicente Blvd, Los Angeles, CA 90049",
+        calendly_url: "https://calendly.com/evens7antoine/30min",
+        id:1
       },
       {
         name: "Leo's Tacos Truck",
@@ -18,7 +20,7 @@ export const initialStore = () => {
         name: "Los Brothers Food Truck",
         address: "1324 Wilshire Blvd, Los Angeles, CA 90017",
         rating: "5 Stars",
-        cuisine: "American"
+        cuisine: "American",
       },
       {
         name: "Tacos De Valle Al Carbon",
@@ -44,7 +46,6 @@ export const initialStore = () => {
         name: "El Flamin Taco - Korea Town",
         address: "505 Vermont Ave, Los Angeles, CA 90020",
       },
-
     ],
     todos: [
       {

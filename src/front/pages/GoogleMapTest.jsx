@@ -53,7 +53,7 @@ export const GoogleMapTest = () => {
                             </div>
                             <div className="col-6">
                                 <div></div>
-                                <button>Book Now!</button>
+                                <Link to={`/calendlypages/${truck.id}`}>Book Now!</Link>
                             </div>
                         </div>
                         <div className="col-3">
