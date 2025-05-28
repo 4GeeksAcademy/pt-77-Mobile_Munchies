@@ -10,8 +10,8 @@ export const Home = () => {
       <div className="container">
         <div className="row">
           <div className="col-sm">
-            <div className="card">
-              <img src="..." className="card-img-top" alt="..." />
+            <div className="card ">
+              <img src="https://api.deepai.org/job-view-file/0688ba73-da14-48d3-aa49-e801b81b2cb3/outputs/output.jpg" className="card-img-top" alt="..." />
               <div className="card-body">
                 <Link to="/components/Events">
                   <button type="button" className="btn btn-danger">
@@ -23,7 +23,7 @@ export const Home = () => {
           </div>
           <div className="col-sm">
             <div ClassName="card">
-              <img src="..." ClassName="card-img-top" alt="..." />
+              <img src="https://api.deepai.org/job-view-file/d80705f3-8fdf-4141-8d9c-cad4dbfb142d/outputs/output.jpg" ClassName="card-img-top" alt="..." />
               <div ClassName="card-body">
                 <Link to="/components/Trucks">
                   <button type="button" className="btn btn-danger">
@@ -78,7 +78,14 @@ export const Home = () => {
               >
                 <h5>Los brothers</h5>
                 <p>
-                  Some representative placeholder content for the first slide.
+                 100% homemade Guatemalan and Mexican food
+                 <div>Rating:5/5 stars</div>
+                 <div></div>
+                <Link to="/components/Trucks">
+                  <button type="button" className="btn btn-danger">
+                    Learn more
+                  </button>
+                </Link>
                 </p>
               </div>
             </div>
@@ -99,7 +106,13 @@ export const Home = () => {
               >
                 <h5>Bun & Blanket</h5>
                 <p>
-                  Some representative placeholder content for the second slide.
+                   Los Angeles' most popular flavors into fusionend burgers
+                   <div>Rating: 4.9/5 Stars</div>
+                   <Link to="/components/Trucks">
+                  <button type="button" className="btn btn-danger">
+                    Learn more
+                  </button>
+                </Link>
                 </p>
               </div>
             </div>
@@ -120,7 +133,13 @@ export const Home = () => {
               >
                 <h5>Sunset Smash</h5>
                 <p>
-                  Some representative placeholder content for the third slide.
+                  Smash burgers and fries brought to LA by two life-long friends 
+                  <div>Rating: 4.8/5 stars</div>
+                  <Link to="/components/Trucks">
+                  <button type="button" className="btn btn-danger">
+                   Learn more
+                  </button>
+                </Link>
                 </p>
               </div>
             </div>
