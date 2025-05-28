@@ -1,0 +1,95 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+export const LogIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const token = sessionStorage.getItem("token");
+
+  const toggleVisibility = (setter) => {
+    setter((prev) => !prev);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setError("");
+
+    if (!email || !password) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
+    try {
+      const resp = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/token', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
+      });
+
+      if (resp.status === 200) {
+        const data = await resp.json();
+        sessionStorage.setItem("token", data.access_token);
+        navigate("/login"); 
+      } else {
+        setError("Invalid email or password.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
+  return (
+    <div className="wrapper signIn">
+      <div className="form">
+        <div className="heading">LOGIN</div>
+
+        {(token && token !== "" && token !== undefined) ? (
+          <p>You are now logged in!</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="email">E-Mail Address:</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your E-Mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div style={{ position: "relative" }}>
+              <label htmlFor="password">Password:</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <i
+                className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+                onClick={() => toggleVisibility(setShowPassword)}
+              ></i>
+            </div>
+
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+
+            <button type="submit">LOGIN</button>
+          </form>
+        )}
+
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
+    </div>
+  );
+};

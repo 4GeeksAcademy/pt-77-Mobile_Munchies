@@ -1,4 +1,4 @@
-  
+
 import os
 from flask_admin import Admin
 from .models import db, User, Vendor, Booking
@@ -14,6 +14,7 @@ def setup_admin(app):
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Vendor, db.session))
     admin.add_view(ModelView(Booking, db.session))
+
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))

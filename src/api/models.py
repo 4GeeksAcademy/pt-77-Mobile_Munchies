@@ -6,17 +6,20 @@ from datetime import datetime
 db = SQLAlchemy()
 
 class User(db.Model):
-    id: Mapped[int] = mapped_column(primary_key=True)
-    email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-    password: Mapped[str] = mapped_column(nullable=False)
-    is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    is_active = db.Column(db.Boolean(), nullable=False)
 
     bookings=relationship("Booking", back_populates="user")
+
 
 
     def serialize(self):
         return {
             "id": self.id,
+            "name": self.name,
             "email": self.email,
             "is_active": self.is_active
         }
