@@ -29,9 +29,11 @@ app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
 jwt = JWTManager(app)
 
 # Allow only your frontend origin
-CORS(app, supports_credentials=True, origins=[
-    "https://miniature-zebra-g4rrw6gx4xw6c9j7r-3000.app.github.dev"
-])
+CORS(
+    app,
+    supports_credentials=True,
+    resources={r"/api/*": {"origins": "https://miniature-zebra-g4rrw6gx4xw6c9j7r-3000.app.github.dev"}}
+)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

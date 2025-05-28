@@ -35,21 +35,31 @@ def token():
             return jsonify({"msg": "Bad credentials"}), 401
         
         access_token = create_access_token(identity=user.id)
-        return jsonify(access_token=access_token)
+
+        return jsonify(
+            access_token=access_token,
+            user={
+                "id": user.id,
+                "email": user.email,
+                "name": user.name
+            }
+        )
 
     except Exception as e:
         print("Error in /api/token:", e)
         return jsonify({"error": "Internal Server Error"}), 500
 
 
+
 @api.route('/signup', methods=['POST'])
 @cross_origin(origin="https://miniature-zebra-g4xw6c9j7r-3000.app.github.dev")
 def signup():
     data = request.get_json()
+    name = data.get("name")
     email = data.get("email")
     password = data.get("password")
 
-    if not email or not password:
+    if not name or not email or not password:
         return jsonify({"message": "Email and password required"}), 400
 
     existing_user = User.query.filter_by(email=email).first()
@@ -58,12 +68,13 @@ def signup():
     
     hashed_password = generate_password_hash(password)
     new_user = User(
+        name=name,
         email=email,
         password=hashed_password,
-        is_active=True
+        is_active=True,
     )
 
-    new_user = User(email=email, password=password, is_active=True)
+    new_user = User(email=email, password=password, name=name, is_active=True)
     db.session.add(new_user)
     db.session.commit()
 
