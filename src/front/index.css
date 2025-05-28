@@ -77,4 +77,40 @@ i.fa-solid.fa-eye {
   position: absolute;
   bottom: 0;
   width: 100%;
+
+.logo{
+    height: 90px;
+    width: 100px;
+}
+.rating{
+    float:left;
+    margin-left:50px;
+}
+.merch{
+    float:right;
+    margin-right:50px;
+}
+.amazon{
+    height:200px;
+    width:200px;
+}
+.shadowed-image {
+  box-shadow: 0 16px 32px rgba(188, 5, 5, 0.831);
+}
+.merchTitle{
+    margin-left: 630px;
+   
+}
+.merchTitle2{
+    margin-left: 638px;
+    
+}
+.merchTitle3{
+    margin-left: 560px;
+    
+}
+.merchTitle4{
+    margin-left: 615px;
+    
+
 }

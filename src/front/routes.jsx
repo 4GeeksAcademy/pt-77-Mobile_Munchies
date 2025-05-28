@@ -13,6 +13,12 @@ import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { CustomersignUp } from "./pages/Customer";
 import { TruckersignUp } from "./pages/Trucker";
+import { Events } from "./components/Events";
+import { Trucks } from "./components/Trucks";
+import { RatingPage } from "./components/RatingPage";
+import { Merch } from "./components/Merch";
+import { GoogleMapTest } from "./pages/GoogleMapTest";
+import { CalendlyPages } from "./pages/CalendlyPages";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +39,12 @@ export const router = createBrowserRouter(
         <Route path= "/signup" element={<SignUp/>} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
+        <Route path= "/components/Events" element={<Events />} />
+        <Route path= "/components/Trucks" element={<Trucks />} />
+        <Route path= "/components/RatingPage" element={<RatingPage />} />
+        <Route path= "/components/Merch" element={<Merch />} />
+        <Route path="/googlemaptest" element={<GoogleMapTest />} />
+        <Route path="/calendlypages" element={<CalendlyPages />} />
       </Route>
     )
 );
