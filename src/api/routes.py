@@ -79,7 +79,7 @@ def signup():
     db.session.commit()
 
 
-    return jsonify({"message": "User registered successfully"}), 201
+    return jsonify({"message": "User registered successfully, You may Login."}), 201
 
 # Get all Vendors
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const TruckersignUp = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -13,7 +14,7 @@ export const TruckersignUp = () => {
   const res = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({name, email, password }),
   });
 
   const data = await res.json();
@@ -24,7 +25,6 @@ export const TruckersignUp = () => {
     setter((prev) => !prev);
   };
 
-
   return (
     <div className="wrapper signUp">
       <form onSubmit={handleSignup} className="form">
@@ -33,7 +33,10 @@ export const TruckersignUp = () => {
             <label htmlFor="name">Buiseness Name:</label>
             <input type="text" 
             id="name" 
-            placeholder="Enter your name" />
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="email">E-Mail:</label>

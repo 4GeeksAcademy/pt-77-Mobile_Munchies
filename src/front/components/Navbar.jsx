@@ -41,7 +41,7 @@ export const Navbar = () => {
 					)}
 					<div className="merch">
 			<Link to="/components/Merch">
-			<button type="button" class="btn btn-danger">Merch</button>
+			<button type="button" className="btn btn-danger">Merch</button>
 			</Link>
 		</div>
 					<Link to="/demo">
