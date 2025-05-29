@@ -32,7 +32,7 @@ jwt = JWTManager(app)
 CORS(
     app,
     supports_credentials=True,
-    resources={r"/api/*": {"origins": "https://miniature-zebra-g4rrw6gx4xw6c9j7r-3000.app.github.dev"}}
+    resources={r"/api/*": {"origins": "*"}}
 )
 
 # database condiguration
