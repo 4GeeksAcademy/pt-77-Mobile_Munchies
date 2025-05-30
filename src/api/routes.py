@@ -52,7 +52,7 @@ def token():
 
 
 @api.route('/signup', methods=['POST'])
-@cross_origin(origin="https://miniature-zebra-g4xw6c9j7r-3000.app.github.dev")
+@cross_origin()
 def signup():
     data = request.get_json()
     name = data.get("name")
@@ -114,7 +114,7 @@ def vendor_signup():
 
 
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
-        return jsonify({"msg": "Some fields are missing in your request"})
+        return jsonify({"msg": "Some fields are missing in your request"}), 400
 
     vendor = Vendor(title=title, email=email, password=password, address=address,
                     price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)

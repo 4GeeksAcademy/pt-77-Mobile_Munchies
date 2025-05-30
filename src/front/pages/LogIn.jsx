@@ -24,9 +24,7 @@ export const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError("");
-
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
@@ -44,9 +42,8 @@ export const LogIn = () => {
         sessionStorage.setItem("token", data.access_token);
         if (data.user && data.user.name) {
         sessionStorage.setItem("userName", data.user.name);
-        navigate("/login");
         }
- 
+        navigate("/login");
       } else {
         setError("Invalid email or password.");
       }
@@ -75,7 +72,6 @@ export const LogIn = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-
             <div style={{ position: "relative" }}>
               <label htmlFor="password">Password:</label>
               <input
