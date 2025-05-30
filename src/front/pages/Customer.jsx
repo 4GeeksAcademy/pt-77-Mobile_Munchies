@@ -11,7 +11,7 @@ export const CustomersignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/signup', {
+    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/signup", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
