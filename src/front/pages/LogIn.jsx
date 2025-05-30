@@ -36,7 +36,6 @@ export const LogIn = () => {
       const resp = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/token', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ email, password })
       });
 
