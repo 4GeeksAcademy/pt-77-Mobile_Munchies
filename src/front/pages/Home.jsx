@@ -22,7 +22,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="col-sm">
-            <div ClassName="card">
+            <div className="card">
               <img src="https://api.deepai.org/job-view-file/d80705f3-8fdf-4141-8d9c-cad4dbfb142d/outputs/output.jpg" ClassName="card-img-top" alt="..." />
               <div ClassName="card-body">
                 <Link to="/components/Trucks">

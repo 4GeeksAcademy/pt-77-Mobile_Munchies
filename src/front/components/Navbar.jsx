@@ -1,11 +1,14 @@
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 export const Navbar = () => {
 	const navigate = useNavigate();
+	const [userName, setUserName] = useState("");
 	const isLoggedIn = sessionStorage.getItem("token") !== null;
 
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("userName");
 		navigate("/login");
 	};
 
@@ -41,7 +44,7 @@ export const Navbar = () => {
 					)}
 					<div className="merch">
 			<Link to="/components/Merch">
-			<button type="button" class="btn btn-danger">Merch</button>
+			<button type="button" className="btn btn-danger">Merch</button>
 			</Link>
 		</div>
 					<Link to="/demo">
