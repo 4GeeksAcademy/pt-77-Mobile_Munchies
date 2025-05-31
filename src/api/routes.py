@@ -30,24 +30,40 @@ def token():
         if not email or not password:
             return jsonify({"msg": "Missing email or password"}), 400
 
+        # First check if the user exists in the User table
         user = User.query.filter_by(email=email).first()
-        if not user or user.password != password:
-            return jsonify({"msg": "Bad credentials"}), 401
-        
-        access_token = create_access_token(identity=user.id)
+        if user and user.password == password:
+            access_token = create_access_token(identity={"id": user.id, "role": "user"})
+            return jsonify(
+                access_token=access_token,
+                user={
+                    "id": user.id,
+                    "email": user.email,
+                    "name": user.name
+                },
+                role="user"
+            ), 200
 
-        return jsonify(
-            access_token=access_token,
-            user={
-                "id": user.id,
-                "email": user.email,
-                "name": user.name
-            }
-        )
+        # If not found, check the Vendor table
+        vendor = Vendor.query.filter_by(email=email).first()
+        if vendor and vendor.password == password:
+            access_token = create_access_token(identity={"id": vendor.id, "role": "vendor"})
+            return jsonify(
+                access_token=access_token,
+                vendor={
+                    "id": vendor.id,
+                    "email": vendor.email,
+                    "title": vendor.title
+                },
+                role="vendor"
+            ), 200
+
+        return jsonify({"msg": "Bad credentials"}), 401
 
     except Exception as e:
         print("Error in /api/token:", e)
         return jsonify({"error": "Internal Server Error"}), 500
+
 
 
 
@@ -120,7 +136,7 @@ def vendor_signup():
                     price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
     db.session.add(vendor)
     db.session.commit()
-    return jsonify(vendor.serialize()), 200
+    return jsonify({"message": "Trucker Account registered successfully, You may Login."}), 201
 
 # Edit a Vendor
 

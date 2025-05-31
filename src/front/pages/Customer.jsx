@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CustomersignUp = () => {
   const [name, setName] = useState('');
@@ -7,6 +8,7 @@ export const CustomersignUp = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ export const CustomersignUp = () => {
 
     const data = await res.json();
     alert(data.message);
+    navigate("/login");
   };
 
 

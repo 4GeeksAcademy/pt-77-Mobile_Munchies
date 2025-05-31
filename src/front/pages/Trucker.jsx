@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TruckersignUp = () => {
   const [title, setTitle] = useState("");
@@ -12,6 +13,8 @@ export const TruckersignUp = () => {
   const [calendly_url, setCalendly_url] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -47,11 +50,11 @@ export const TruckersignUp = () => {
       <form onSubmit={(e) => handleSignup(e)} className="form">
         <div className="heading">CREATE A TRUCKER ACCOUNT</div>
         <div>
-          <label>Business Name:</label>
+          <label>Business Title:</label>
           <input
             type="text"
             id="name"
-            placeholder="Enter your name"
+            placeholder="Enter your Buisness Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />

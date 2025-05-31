@@ -24,12 +24,13 @@ export const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setError("");
+
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
     }
-
     try {
       const resp = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/token', {
         method: 'POST',
@@ -42,8 +43,12 @@ export const LogIn = () => {
         sessionStorage.setItem("token", data.access_token);
         if (data.user && data.user.name) {
         sessionStorage.setItem("userName", data.user.name);
-        }
-        navigate("/login");
+        setUserName(data.user.name);
+        } else if (data.vendor && data.vendor.title) {
+        sessionStorage.setItem("userName", data.vendor.title);
+        setUserName(data.vendor.title);
+      }
+      navigate("/login");
       } else {
         setError("Invalid email or password.");
       }
