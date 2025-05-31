@@ -21,7 +21,10 @@ export const CustomersignUp = () => {
 
     const data = await res.json();
     alert(data.message);
-    navigate("/login");
+    if (res.ok) {setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+    }
   };
 
 

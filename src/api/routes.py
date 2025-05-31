@@ -76,7 +76,7 @@ def signup():
     password = data.get("password")
 
     if not name or not email or not password:
-        return jsonify({"message": "Email and password required"}), 400
+        return jsonify({"message": "Name, email and password required"}), 400
 
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:

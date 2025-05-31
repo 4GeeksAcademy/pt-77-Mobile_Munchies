@@ -39,6 +39,10 @@ export const TruckersignUp = () => {
 
     const data = await res.json();
     alert(data.message);
+    if (res.ok) {setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+    }
   };
 
   const toggleVisibility = (setter) => {
