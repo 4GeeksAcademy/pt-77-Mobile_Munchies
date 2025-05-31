@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
+import picture from "../assets/img/find.jpg"
+import picture2 from "../assets/img/register 3.jpg"
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -11,7 +13,11 @@ export const Home = () => {
         <div className="row">
           <div className="col-sm">
             <div className="card ">
-              <img src="https://api.deepai.org/job-view-file/0688ba73-da14-48d3-aa49-e801b81b2cb3/outputs/output.jpg" className="card-img-top" alt="..." />
+              <img
+                src={picture2}
+                className="card-img-top"
+                alt="..."
+              />
               <div className="card-body">
                 <Link to="/components/Events">
                   <button type="button" className="btn btn-danger">
@@ -22,9 +28,13 @@ export const Home = () => {
             </div>
           </div>
           <div className="col-sm">
-            <div ClassName="card">
-              <img src="https://api.deepai.org/job-view-file/d80705f3-8fdf-4141-8d9c-cad4dbfb142d/outputs/output.jpg" ClassName="card-img-top" alt="..." />
-              <div ClassName="card-body">
+            <div className="card">
+              <img
+                src={picture}
+                ClassName="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
                 <Link to="/components/Trucks">
                   <button type="button" className="btn btn-danger">
                     Find a truck
@@ -76,17 +86,19 @@ export const Home = () => {
                 className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
                 style={{ width: "15%" }}
               >
+                <div>
                 <h5>Los brothers</h5>
+                </div>
+                <div>
                 <p>
-                 100% homemade Guatemalan and Mexican food
-                 <div>Rating:5/5 stars</div>
-                 <div></div>
-                <Link to="/components/Trucks">
-                  <button type="button" className="btn btn-danger">
-                    Learn more
-                  </button>
-                </Link>
-                </p>
+                  100% homemade Guatemalan and Mexican food</p></div>
+                  <div>Rating: 5/5 stars</div>
+                  <Link to="/components/Trucks">
+                    <button type="button" className="btn btn-danger">
+                      Learn more
+                    </button>
+                  </Link>
+                
               </div>
             </div>
           </div>
@@ -104,16 +116,17 @@ export const Home = () => {
                 className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
                 style={{ width: "15%" }}
               >
-                <h5>Bun & Blanket</h5>
+                <div> <h5>Bun & Blanket</h5></div>
+               <div>
                 <p>
-                   Los Angeles' most popular flavors into fusionend burgers
-                   <div>Rating: 4.9/5 Stars</div>
-                   <Link to="/components/Trucks">
-                  <button type="button" className="btn btn-danger">
-                    Learn more
-                  </button>
-                </Link>
-                </p>
+                  Los Angeles' most popular flavors into fusionend burgers </p></div>
+                  <div>Rating: 4.9/5 Stars</div>
+                  <Link to="/components/Trucks">
+                    <button type="button" className="btn btn-danger">
+                      Learn more
+                    </button>
+                  </Link>
+               
               </div>
             </div>
           </div>
@@ -131,15 +144,17 @@ export const Home = () => {
                 className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
                 style={{ width: "15%" }}
               >
-                <h5>Sunset Smash</h5>
+                <div>
+                <h5>Sunset Smash</h5></div>
+                
                 <p>
-                  Smash burgers and fries brought to LA by two life-long friends 
+                  Smash burgers and fries brought to LA by two life-long friends
                   <div>Rating: 4.8/5 stars</div>
                   <Link to="/components/Trucks">
-                  <button type="button" className="btn btn-danger">
-                   Learn more
-                  </button>
-                </Link>
+                    <button type="button" className="btn btn-danger">
+                      Learn more
+                    </button>
+                  </Link>
                 </p>
               </div>
             </div>
