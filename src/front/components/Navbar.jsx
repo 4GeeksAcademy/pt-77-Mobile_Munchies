@@ -35,6 +35,9 @@ export const Navbar = () => {
 							<Link className="btn btn-primary signup me-2" to="/signup">
 								Signup
 							</Link>
+							<Link className="btn btn-primary signup me-2" to="/vendor/signin">
+								Vendor SignIn
+							</Link>
 						</>
 					)}
 					{isLoggedIn && (
@@ -47,8 +50,8 @@ export const Navbar = () => {
 			<button type="button" className="btn btn-danger">Merch</button>
 			</Link>
 		</div>
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action\</button>
+					<Link to="/vendorspage">
+						<button className="btn btn-primary">Vendors Page</button>
 					</Link>
 					<Link to="/googlemaptest">
 						<button className="btn btn-primary">Google Maps</button>
