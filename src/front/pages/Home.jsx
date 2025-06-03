@@ -81,6 +81,7 @@ export const Home = () => {
                 className="d-flex justify-content-end w-25 h-25 shadowed-image"
                 src="https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg"
                 alt="..."
+               
               />
               <div
                 className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"

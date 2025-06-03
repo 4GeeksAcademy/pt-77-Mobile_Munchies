@@ -19,7 +19,6 @@ export const Navbar = () => {
               src="https://images.deepai.org/chat-style-image/0459cd1bb41d4e18b3774762886eeac8/output.jpg"
             />
           </span>
-          {/* <span className="navbar-brand mb-0 h1">Home</span> */}
         </Link>
 		<div className="title"><h1>MOBILE MUNCHIES</h1></div>
       </div>

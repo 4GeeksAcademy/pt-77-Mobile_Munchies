@@ -151,3 +151,7 @@ i.fa-solid.fa-eye {
 .dropdown{
     padding-right:75px;
 }
+.custom-background {
+  background-color: grey;
+  box-shadow: 0 64px 64px rgba(188, 5, 5, 0.831);
+}
