@@ -28,6 +28,11 @@ export const VendorSignIn = () => {
     const result = await vendorSignIn(dispatch, email, password);
 
     if (result.success) {
+      dispatch({type: "VENDOR_SIGNIN_START",
+        payload: {
+        vendor: result.result.vendor,
+        access_token: result.result.access_token}
+      })
       navigate("/vendor-dashboard");
     } else {
       setError(result.error);

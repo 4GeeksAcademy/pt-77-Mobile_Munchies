@@ -21,6 +21,7 @@ import { Merch } from "./components/Merch";
 import { GoogleMapTest } from "./pages/GoogleMapTest";
 import { VendorsPage } from "./pages/VendorsPage";
 import { CalendlyPages } from "./pages/CalendlyPages";
+import { VendorDashboard } from "./pages/VendorDashboard";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -49,6 +50,7 @@ export const router = createBrowserRouter(
         <Route path="/googlemaptest" element={<GoogleMapTest />} />
         <Route path="/vendorspage" element={<VendorsPage />} />
         <Route path="/calendlypages/:id" element={<CalendlyPages />} />
+        <Route path="/vendor-dashboard" element={<VendorDashboard />} />
       </Route>
     )
 );
