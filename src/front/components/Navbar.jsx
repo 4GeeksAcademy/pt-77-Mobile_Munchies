@@ -42,6 +42,11 @@ export const Navbar = () => {
 							Log Out
 						</button>
 					)}
+					{isLoggedIn && (
+						<Link className="btn btn-primary signup me-2" to="/profile">
+							Account
+						</Link>
+					)}
 					<div className="merch">
 			<Link to="/components/Merch">
 			<button type="button" className="btn btn-danger">Merch</button>

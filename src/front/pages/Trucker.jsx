@@ -98,7 +98,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div>
-          <label>Price:</label>
+          <label>Price to Book:</label>
           <input
             type="number"
             id="price"

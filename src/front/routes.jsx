@@ -19,6 +19,7 @@ import { RatingPage } from "./components/RatingPage";
 import { Merch } from "./components/Merch";
 import { GoogleMapTest } from "./pages/GoogleMapTest";
 import { CalendlyPages } from "./pages/CalendlyPages";
+import { Profilepage } from "./pages/Profile";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +38,7 @@ export const router = createBrowserRouter(
         <Route path= "/customersignup" element={<CustomersignUp/>} />
         <Route path= "/truckersignup" element={<TruckersignUp/>} />
         <Route path= "/signup" element={<SignUp/>} />
+        <Route path= "/profile" element={<Profilepage/>} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
         <Route path= "/components/Events" element={<Events />} />
