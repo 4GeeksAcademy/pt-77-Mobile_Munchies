@@ -17,7 +17,7 @@ from flask_cors import CORS
 # from models import Person
 
 app = Flask(__name__)
-
+CORS(app)
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
