@@ -1,11 +1,14 @@
 import React from 'react';
 import { SimpleCalendly } from '../components/SimpleCalendly';
 import { FixedCalendly } from '../components/FixedCalendly';
+import { useParams } from 'react-router-dom';
+import useGlobalReducer from '../hooks/useGlobalReducer';
 
 export const CalendlyPages = () => {
   // Option 1: Using the FixedCalendly component with a hardcoded URL
-  const calendlyUrl = "https://calendly.com/evens7antoine/30min";
-
+  const {store} = useGlobalReducer()
+  const {id} = useParams()
+  const truck = store.foodTrucks?.find((truck) => truck.id == id)
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Schedule a Meeting</h1>
@@ -21,7 +24,7 @@ export const CalendlyPages = () => {
       <div className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Option 1: Fixed Calendly URL</h2>
         <div className="border rounded-lg overflow-hidden">
-          <FixedCalendly url={calendlyUrl} />
+          <FixedCalendly url={truck.calendly_url} />
         </div>
       </div>
 

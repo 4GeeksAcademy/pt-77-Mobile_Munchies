@@ -30,20 +30,35 @@ def token():
         if not email or not password:
             return jsonify({"msg": "Missing email or password"}), 400
 
+        # First check if the user exists in the User table
         user = User.query.filter_by(email=email).first()
-        if not user or user.password != password:
-            return jsonify({"msg": "Bad credentials"}), 401
-        
-        access_token = create_access_token(identity=user.id)
+        if user and user.password == password:
+            access_token = create_access_token(identity={"id": user.id, "role": "user"})
+            return jsonify(
+                access_token=access_token,
+                user={
+                    "id": user.id,
+                    "email": user.email,
+                    "name": user.name
+                },
+                role="user"
+            ), 200
 
-        return jsonify(
-            access_token=access_token,
-            user={
-                "id": user.id,
-                "email": user.email,
-                "name": user.name
-            }
-        )
+        # If not found, check the Vendor table
+        vendor = Vendor.query.filter_by(email=email).first()
+        if vendor and vendor.password == password:
+            access_token = create_access_token(identity={"id": vendor.id, "role": "vendor"})
+            return jsonify(
+                access_token=access_token,
+                vendor={
+                    "id": vendor.id,
+                    "email": vendor.email,
+                    "title": vendor.title
+                },
+                role="vendor"
+            ), 200
+
+        return jsonify({"msg": "Bad credentials"}), 401
 
     except Exception as e:
         print("Error in /api/token:", e)
@@ -51,8 +66,9 @@ def token():
 
 
 
+
 @api.route('/signup', methods=['POST'])
-@cross_origin(origin="https://miniature-zebra-g4xw6c9j7r-3000.app.github.dev")
+@cross_origin()
 def signup():
     data = request.get_json()
     name = data.get("name")
@@ -60,7 +76,7 @@ def signup():
     password = data.get("password")
 
     if not name or not email or not password:
-        return jsonify({"message": "Email and password required"}), 400
+        return jsonify({"message": "Name, email and password required"}), 400
 
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
@@ -79,7 +95,7 @@ def signup():
     db.session.commit()
 
 
-    return jsonify({"message": "User registered successfully"}), 201
+    return jsonify({"message": "User registered successfully, You may Login."}), 201
 
 # Get all Vendors
 
@@ -114,13 +130,13 @@ def vendor_signup():
 
 
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
-        return jsonify({"msg": "Some fields are missing in your request"})
+        return jsonify({"msg": "Some fields are missing in your request"}), 400
 
     vendor = Vendor(title=title, email=email, password=password, address=address,
                     price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
     db.session.add(vendor)
     db.session.commit()
-    return jsonify(vendor.serialize()), 200
+    return jsonify({"message": "Trucker Account registered successfully, You may Login."}), 201
 
 # Edit a Vendor
 

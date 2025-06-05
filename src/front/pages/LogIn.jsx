@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,6 +11,13 @@ export const LogIn = () => {
 
   const token = sessionStorage.getItem("token");
 
+  useEffect(() => {
+    const storedName = sessionStorage.getItem("userName");
+    if (storedName) {
+      setUserName(storedName);
+    }
+  }, []);
+  
   const toggleVisibility = (setter) => {
     setter((prev) => !prev);
   };
@@ -23,19 +31,24 @@ export const LogIn = () => {
       setError("Please enter both email and password.");
       return;
     }
-
     try {
       const resp = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/token', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ email, password })
       });
 
       if (resp.status === 200) {
         const data = await resp.json();
         sessionStorage.setItem("token", data.access_token);
-        navigate("/login"); 
+        if (data.user && data.user.name) {
+        sessionStorage.setItem("userName", data.user.name);
+        setUserName(data.user.name);
+        } else if (data.vendor && data.vendor.title) {
+        sessionStorage.setItem("userName", data.vendor.title);
+        setUserName(data.vendor.title);
+      }
+      navigate("/login");
       } else {
         setError("Invalid email or password.");
       }
@@ -50,8 +63,8 @@ export const LogIn = () => {
       <div className="form">
         <div className="heading">LOGIN</div>
 
-        {(token && token !== "" && token !== undefined) ? (
-          <p>You are now logged in!</p>
+        {(token && userName) ? (
+          <p>Welcome, {userName}!</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div>
@@ -64,7 +77,6 @@ export const LogIn = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-
             <div style={{ position: "relative" }}>
               <label htmlFor="password">Password:</label>
               <input
@@ -79,16 +91,13 @@ export const LogIn = () => {
                 onClick={() => toggleVisibility(setShowPassword)}
               ></i>
             </div>
-
             {error && <p style={{ color: 'red' }}>{error}</p>}
-
             <button type="submit">LOGIN</button>
+            <p>
+              Don't have an account? <Link to="/signup">Sign Up</Link>
+            </p>
           </form>
         )}
-
-        <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </p>
       </div>
     </div>
   );

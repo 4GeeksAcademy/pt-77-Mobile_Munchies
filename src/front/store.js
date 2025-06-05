@@ -5,9 +5,8 @@ export const initialStore = () => {
       {
         name: "Sunset Smash",
         address: "11941 San Vicente Blvd, Los Angeles, CA 90049",
-        cuisine: "American comfort food, burgers, and sandwiches",
-        rating: "4.8 Stars",
-        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s",
+        calendly_url: "https://calendly.com/evens7antoine/30min",
+        id:1
       },
       {
         name: "Leo's Tacos Truck",
@@ -28,7 +27,7 @@ export const initialStore = () => {
         address: "1324 Wilshire Blvd, Los Angeles, CA 90017",
         cuisine: "Mexican and Guatamalan food",
         rating: "5 Stars",
-        img:"https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg",
+        cuisine: "American",
       },
       {
         name: "Tacos De Valle Al Carbon",
@@ -72,7 +71,6 @@ export const initialStore = () => {
         rating: "4.4 Stars",
         img:"https://cdn.corner.inc/place-photo/Aaw_FcJuOldJG4CKwjOuhX9c1P128lVds_TTceuJP7GdmiNkxzpvVur12qIjpfL9I3HjyxD5ePl3NowvyVugUe4AbPcSWVY7T7qzJDLVCAnfaCnY_EBhEGv8_mzDeWRtswcdpbR39SdwzoPIIVtuAla-AriMeFJJfhr330wg6q4GzUY1qE48.jpeg",
       },
-
     ],
     todos: [
       {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CustomersignUp = () => {
   const [name, setName] = useState('');
@@ -7,11 +8,12 @@ export const CustomersignUp = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/signup', {
+    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/signup", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
@@ -19,6 +21,10 @@ export const CustomersignUp = () => {
 
     const data = await res.json();
     alert(data.message);
+    if (res.ok) {setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+    }
   };
 
 

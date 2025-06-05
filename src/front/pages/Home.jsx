@@ -27,15 +27,13 @@ export const Home = () => {
           </div>
           <div className="col-sm">
             <div className="card">
-              <img src={picture} ClassName="card-img-top" alt="..." />
-              <div className="card-body">
-                <div className="d-flex justify-content-center">
-                  <Link to="/googlemaptest">
-                    <button type="button" className="btn btn-danger">
-                      Find a truck
-                    </button>
-                  </Link>
-                </div>
+              <img src="https://api.deepai.org/job-view-file/d80705f3-8fdf-4141-8d9c-cad4dbfb142d/outputs/output.jpg" ClassName="card-img-top" alt="..." />
+              <div ClassName="card-body">
+                <Link to="/components/Trucks">
+                  <button type="button" className="btn btn-danger">
+                    Find a truck
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

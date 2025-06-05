@@ -44,7 +44,7 @@ export const router = createBrowserRouter(
         <Route path= "/components/RatingPage" element={<RatingPage />} />
         <Route path= "/components/Merch" element={<Merch />} />
         <Route path="/googlemaptest" element={<GoogleMapTest />} />
-        <Route path="/calendlypages" element={<CalendlyPages />} />
+        <Route path="/calendlypages/:id" element={<CalendlyPages />} />
       </Route>
     )
 );
