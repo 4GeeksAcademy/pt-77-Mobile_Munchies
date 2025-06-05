@@ -24,13 +24,14 @@ export const GoogleMapTest = () => {
                         </div>
                         <div className="d-flex col-6 row">
                             <div className="col-6">
-                                <h2>{truck.name}</h2>
-                                <h4>{truck.address}</h4>
-                                <h4>{truck.price}</h4>
+                                <h2>{truck.title}</h2>
+                                <p>{truck.address}</p>
+                                <h5>${truck.price}</h5>
                             </div>
                             <div className="col-6">
                                 <div></div>
-                                <Link to={`/calendlypages/${truck.id}`}>Book Now!</Link>
+                                <Link className="btn btn-success"
+                                 to={`/calendlypages/${truck.id}`}>Book Now!</Link>
                             </div>
                         </div>
                         <div className="col-3">
