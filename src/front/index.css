@@ -155,3 +155,14 @@ i.fa-solid.fa-eye {
   background-color: grey;
   box-shadow: 0 64px 64px rgba(188, 5, 5, 0.831);
 }
+
+.menubuttons,
+.menubuttons2,
+.menubuttons3,
+.menubuttons4,
+.menubuttons5,
+.menubuttons6 {
+  display: flex;
+  justify-content: center;
+   margin-bottom: 10%;
+}
