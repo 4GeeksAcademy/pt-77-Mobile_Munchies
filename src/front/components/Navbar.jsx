@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const isLoggedIn = sessionStorage.getItem("token") !== null;
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userName");
     navigate("/login");
   };
 
