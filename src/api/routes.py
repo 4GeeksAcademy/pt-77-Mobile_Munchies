@@ -103,21 +103,20 @@ def update_profile():
         return jsonify({"msg": "Invalid token format"}), 400
 
     data = request.get_json()
-    new_name = data.get("name")
+
     new_email = data.get("email")
 
-    if not new_name or not new_email:
-        return jsonify({"msg": "Name and email are required"}), 400
-
     if role == "user":
+        new_name = data.get("name")
+        if not new_name or not new_email:
+            return jsonify({"msg": "Name and email are required"}), 400
+
         user = User.query.get(user_id)
         if user:
-            # Check if new_email is used by another user
-            existing_user = User.query.filter_by(email=new_email).first()
-            if existing_user and existing_user.id != user.id:
+            existing_user = User.query.filter(User.email == new_email, User.id != user.id).first()
+            if existing_user:
                 return jsonify({"msg": "Email is already in use"}), 400
 
-            # Check if new_email is used by any vendor
             existing_vendor = Vendor.query.filter_by(email=new_email).first()
             if existing_vendor:
                 return jsonify({"msg": "Email is already in use"}), 400
@@ -128,24 +127,36 @@ def update_profile():
             return jsonify(user.serialize()), 200
 
     elif role == "vendor":
+        new_title = data.get("title")
+        address = data.get("address")
+        price = data.get("price")
+        picture = data.get("picture")
+        calendly_url = data.get("calendly_url")
+
+        if not new_title or not new_email:
+            return jsonify({"msg": "Title and email are required"}), 400
+
         vendor = Vendor.query.get(user_id)
         if vendor:
-            # Check if new_email is used by another vendor
-            existing_vendor = Vendor.query.filter_by(email=new_email).first()
-            if existing_vendor and existing_vendor.id != vendor.id:
+            existing_vendor = Vendor.query.filter(Vendor.email == new_email, Vendor.id != vendor.id).first()
+            if existing_vendor:
                 return jsonify({"msg": "Email is already in use"}), 400
 
-            # Check if new_email is used by any user
             existing_user = User.query.filter_by(email=new_email).first()
             if existing_user:
                 return jsonify({"msg": "Email is already in use"}), 400
 
-            vendor.title = new_name
+            vendor.title = new_title
             vendor.email = new_email
+            vendor.address = address
+            vendor.price = price
+            vendor.picture = picture
+            vendor.calendly_url = calendly_url
             db.session.commit()
             return jsonify(vendor.serialize()), 200
 
     return jsonify({"msg": "User not found"}), 404
+
 
 
 # Allows users to edit their current password and update their new one
