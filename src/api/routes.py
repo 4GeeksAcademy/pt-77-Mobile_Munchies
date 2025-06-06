@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Vendor
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
-from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_cors import cross_origin
 
 api = Blueprint('api', __name__)
@@ -22,6 +22,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
+# Allow User to log in with email and password from User or Vendor accounts
 @api.route('/token', methods=['POST'])
 def token():
     try:
@@ -32,11 +33,9 @@ def token():
         if not email or not password:
             return jsonify({"msg": "Missing email or password"}), 400
 
-        # First check if the user exists in the User table
         user = User.query.filter_by(email=email).first()
-        if user and user.password == password:
-            access_token = create_access_token(
-                identity={"id": user.id, "role": "user"})
+        if user and check_password_hash(user.password, password):
+            access_token = create_access_token(identity=f"user:{user.id}")
             return jsonify(
                 access_token=access_token,
                 user={
@@ -47,11 +46,9 @@ def token():
                 role="user"
             ), 200
 
-        # If not found, check the Vendor table
         vendor = Vendor.query.filter_by(email=email).first()
-        if vendor and vendor.password == password:
-            access_token = create_access_token(
-                identity={"id": vendor.id, "role": "vendor"})
+        if vendor and check_password_hash(vendor.password, password):
+            access_token = create_access_token(identity=f"vendor:{vendor.id}")
             return jsonify(
                 access_token=access_token,
                 vendor={
@@ -68,7 +65,136 @@ def token():
         print("Error in /api/token:", e)
         return jsonify({"error": "Internal Server Error"}), 500
 
+# Allows logged in user to see their information
+@api.route('/profile', methods=['GET'])
+@jwt_required()
+def get_profile():
+    identity = get_jwt_identity()
+    print("JWT identity:", identity)
 
+    try:
+        role, id_str = identity.split(":")
+        user_id = int(id_str)
+    except Exception:
+        return jsonify({"msg": "Invalid token format"}), 400
+
+    if role == "user":
+        user = User.query.get(user_id)
+        if user:
+            return jsonify({**user.serialize(), "role": "user"}), 200
+
+    elif role == "vendor":
+        vendor = Vendor.query.get(user_id)
+        if vendor:
+            return jsonify({**vendor.serialize(), "role": "vendor"}), 200
+
+    return jsonify({"msg": "User not found"}), 404
+
+
+# Allows users to edit their email and name/title
+@api.route('/profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    identity = get_jwt_identity()
+    print("JWT identity:", identity)
+
+    try:
+        role, id_str = identity.split(":")
+        user_id = int(id_str)
+    except Exception:
+        return jsonify({"msg": "Invalid token format"}), 400
+
+    data = request.get_json()
+
+    new_email = data.get("email")
+
+    if role == "user":
+        new_name = data.get("name")
+        if not new_name or not new_email:
+            return jsonify({"msg": "Name and email are required"}), 400
+
+        user = User.query.get(user_id)
+        if user:
+            existing_user = User.query.filter(User.email == new_email, User.id != user.id).first()
+            if existing_user:
+                return jsonify({"msg": "Email is already in use"}), 400
+
+            existing_vendor = Vendor.query.filter_by(email=new_email).first()
+            if existing_vendor:
+                return jsonify({"msg": "Email is already in use"}), 400
+
+            user.name = new_name
+            user.email = new_email
+            db.session.commit()
+            return jsonify(user.serialize()), 200
+
+    elif role == "vendor":
+        new_title = data.get("title")
+        address = data.get("address")
+        price = data.get("price")
+        picture = data.get("picture")
+        calendly_url = data.get("calendly_url")
+
+        if not new_title or not new_email:
+            return jsonify({"msg": "Title and email are required"}), 400
+
+        vendor = Vendor.query.get(user_id)
+        if vendor:
+            existing_vendor = Vendor.query.filter(Vendor.email == new_email, Vendor.id != vendor.id).first()
+            if existing_vendor:
+                return jsonify({"msg": "Email is already in use"}), 400
+
+            existing_user = User.query.filter_by(email=new_email).first()
+            if existing_user:
+                return jsonify({"msg": "Email is already in use"}), 400
+
+            vendor.title = new_title
+            vendor.email = new_email
+            vendor.address = address
+            vendor.price = price
+            vendor.picture = picture
+            vendor.calendly_url = calendly_url
+            db.session.commit()
+            return jsonify(vendor.serialize()), 200
+
+    return jsonify({"msg": "User not found"}), 404
+
+
+
+# Allows users to edit their current password and update their new one
+@api.route('/profile/password', methods=['PUT'])
+@jwt_required()
+def update_password():
+    identity = get_jwt_identity()
+    role, id_str = identity.split(":")
+    user_id = int(id_str)
+
+    data = request.get_json()
+    current_password = data.get("current_password")
+    new_password = data.get("new_password")
+
+    if not current_password or not new_password:
+        return jsonify({"msg": "Current and new password required"}), 400
+
+    if role == "user":
+        user = User.query.get(user_id)
+        if not user or not check_password_hash(user.password, current_password):
+            return jsonify({"msg": "Current password is incorrect"}), 400
+        user.password = generate_password_hash(new_password)
+        db.session.commit()
+        return jsonify({"msg": "Password updated successfully"}), 200
+
+    elif role == "vendor":
+        vendor = Vendor.query.get(user_id)
+        if not vendor or not check_password_hash(vendor.password, current_password):
+            return jsonify({"msg": "Current password is incorrect"}), 400
+        vendor.password = generate_password_hash(new_password)
+        db.session.commit()
+        return jsonify({"msg": "Password updated successfully"}), 200
+
+    return jsonify({"msg": "Invalid user"}), 404
+
+# Allows users to signup their account
 @api.route('/signup', methods=['POST'])
 @cross_origin()
 def signup():
@@ -92,7 +218,6 @@ def signup():
         is_active=True,
     )
 
-    new_user = User(email=email, password=password, name=name, is_active=True)
     db.session.add(new_user)
     db.session.commit()
 
@@ -151,8 +276,9 @@ def vendor_signup():
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
         return jsonify({"msg": "Some fields are missing in your request"}), 400
 
-    vendor = Vendor(title=title, email=email, password=password, address=address,
-                    price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
+    hashed_password = generate_password_hash(password)
+    vendor = Vendor(title=title, email=email, password=hashed_password, address=address,
+                price=price, picture=picture, is_active=is_active, calendly_url=calendly_url)
     db.session.add(vendor)
     db.session.commit()
     return jsonify({"message": "Trucker Account registered successfully, You may Login."}), 201

@@ -58,20 +58,17 @@ i.fa-solid.fa-eye {
   margin-top: 1.5rem;
   border-radius: 8px;
 }
-
-@media (min-width: 542px) {
-  .wrapper {
-    justify-content: center;
-    margin: auto;
-    border-style: solid;
-    border-radius: 10px;
-    width: 20%;
-    margin-top: 5%;
-  }
-  .form {
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-  }
+.wrapper {
+  justify-content: center;
+  margin: auto;
+  border-style: solid;
+  border-radius: 10px;
+  width: 20%;
+  margin-top: 5%;
+}
+.form {
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
 }
 #footer {
   position: absolute;
@@ -161,4 +158,10 @@ i.fa-solid.fa-eye {
   display: flex;
   justify-content: center;
    margin-bottom: 10%;
+}
+div.profile-card{
+  border-style: solid;
+  text-align: center;
+  width: 25%;
+  border-radius: 10px;
 }
