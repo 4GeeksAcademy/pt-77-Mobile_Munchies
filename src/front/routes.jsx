@@ -11,6 +11,7 @@ import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
+import { VendorSignIn } from "./pages/VendorSignIn";
 import { CustomersignUp } from "./pages/Customer";
 import { TruckersignUp } from "./pages/Trucker";
 import { Events } from "./components/Events";
@@ -18,7 +19,9 @@ import { Trucks } from "./components/Trucks";
 import { RatingPage } from "./components/RatingPage";
 import { Merch } from "./components/Merch";
 import { GoogleMapTest } from "./pages/GoogleMapTest";
+import { VendorsPage } from "./pages/VendorsPage";
 import { CalendlyPages } from "./pages/CalendlyPages";
+import { VendorDashboard } from "./pages/VendorDashboard";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +40,7 @@ export const router = createBrowserRouter(
         <Route path= "/customersignup" element={<CustomersignUp/>} />
         <Route path= "/truckersignup" element={<TruckersignUp/>} />
         <Route path= "/signup" element={<SignUp/>} />
+        <Route path= "/vendor/signin" element={<VendorSignIn/>} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
         <Route path= "/components/Events" element={<Events />} />
@@ -44,7 +48,9 @@ export const router = createBrowserRouter(
         <Route path= "/components/RatingPage" element={<RatingPage />} />
         <Route path= "/components/Merch" element={<Merch />} />
         <Route path="/googlemaptest" element={<GoogleMapTest />} />
+        <Route path="/vendorspage" element={<VendorsPage />} />
         <Route path="/calendlypages/:id" element={<CalendlyPages />} />
+        <Route path="/vendor-dashboard" element={<VendorDashboard />} />
       </Route>
     )
 );
