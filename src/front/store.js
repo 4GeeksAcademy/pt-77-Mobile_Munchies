@@ -5,7 +5,7 @@ export const initialStore = () => {
     message: null,
     user: {}, 
     access_token: null, 
-    foodTrucks: []
+    foodTrucks: [],
     foodTrucks: [
       {
         name: "Sunset Smash",
@@ -23,7 +23,7 @@ export const initialStore = () => {
       {
         name: "Tamix Mexican Food Truck",
         address: "4817 W Pico Blvd, Los Angeles, CA 90019",
-         cuisine: "Specializes in el pastor tacos",
+        cuisine: "Specializes in el pastor tacos",
         rating: "4.5 Stars",
         img:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5fdBOXrkrI3xZ_QptfGpHzrk5chUI5T-p6SBy-EAt67xUux2QPYCxE6e8Urp2qOfeARRTwSH_nelv0Yko5kGdu47RWCg3MpaKRN-D6tVsOvVvl2RX9f9K5WJTFLIGZGw6JTPUWBU_hh42/w1200-h630-p-k-no-nu/MVIMG_20190917_211205+copy.jpg",
       },
