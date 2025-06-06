@@ -22,6 +22,7 @@ import { GoogleMapTest } from "./pages/GoogleMapTest";
 import { VendorsPage } from "./pages/VendorsPage";
 import { CalendlyPages } from "./pages/CalendlyPages";
 import { VendorDashboard } from "./pages/VendorDashboard";
+import { Profilepage } from "./pages/Profile";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -41,6 +42,7 @@ export const router = createBrowserRouter(
         <Route path= "/truckersignup" element={<TruckersignUp/>} />
         <Route path= "/signup" element={<SignUp/>} />
         <Route path= "/vendor/signin" element={<VendorSignIn/>} />
+        <Route path= "/profile" element={<Profilepage/>} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
         <Route path= "/components/Events" element={<Events />} />

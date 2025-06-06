@@ -48,7 +48,7 @@ export const LogIn = () => {
         sessionStorage.setItem("userName", data.vendor.title);
         setUserName(data.vendor.title);
       }
-      navigate("/login");
+      navigate("/");
       } else {
         setError("Invalid email or password.");
       }
