@@ -32,6 +32,20 @@ export const Profilepage = () => {
       });
   }, []);
 
+  useEffect(() => {
+  if (updateMsg) {
+    const timer = setTimeout(() => setUpdateMsg(""), 4000);
+    return () => clearTimeout(timer);
+  }
+  }, [updateMsg]);
+
+  useEffect(() => {
+  if (passwordMsg) {
+    const timer = setTimeout(() => setPasswordMsg(""), 4000);
+    return () => clearTimeout(timer);
+  }
+  }, [passwordMsg]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -67,7 +81,6 @@ export const Profilepage = () => {
     if (res.ok) {
       setUpdateMsg("Profile updated successfully.");
       setProfile({ ...profile, ...data });
-      setEditMode(false);
     } else {
       setUpdateMsg(data.msg || "Failed to update profile.");
     }
@@ -107,6 +120,7 @@ export const Profilepage = () => {
     <div className="d-flex justify-content-center mt-5">
         <div className="profile-card">
             <h2>Profile Page</h2>
+            {updateMsg && <div className="alert alert-info mt-2">{updateMsg}</div>}
             {!editMode ? (
                 <div className="mb-4">
                 {profile.role === "user" ? (
