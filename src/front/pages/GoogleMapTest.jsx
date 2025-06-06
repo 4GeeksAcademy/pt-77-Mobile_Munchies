@@ -2,37 +2,14 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
 import MapVisual from "../components/MapVisual.jsx";
+import { fetch_vendors } from "../hooks/useGlobalReducer";
 
 export const GoogleMapTest = () => {
     // Access the global state and dispatch function using the useGlobalReducer hook.
     const { store, dispatch } = useGlobalReducer()
 
-
-
-    const loadMessage = async () => {
-        try {
-            const backendUrl = import.meta.env.VITE_BACKEND_URL
-
-            if (!backendUrl) throw new Error("VITE_BACKEND_URL is not defined in .env file")
-
-            const response = await fetch(backendUrl + "/api/hello")
-            const data = await response.json()
-
-            if (response.ok) dispatch({ type: "set_hello", payload: data.message })
-
-            return data
-
-        } catch (error) {
-            if (error.message) throw new Error(
-                `Could not fetch the message from the backend.
-				Please check if the backend is running and the backend port is public.`
-            );
-        }
-
-    }
-
     useEffect(() => {
-        loadMessage()
+        fetch_vendors(dispatch)
     }, [])
 
     return (
@@ -49,6 +26,9 @@ export const GoogleMapTest = () => {
                         </div>
                         <div className="d-flex col-6 row">
                             <div className="col-6">
+                                <h2>{truck.title}</h2>
+                                <p>{truck.address}</p>
+                                <h5>${truck.price}</h5>
                                 <h2>{truck.name}</h2>
                                 <h6>{truck.address}</h6>
                                 <h6>{truck.cuisine}</h6>
@@ -56,7 +36,8 @@ export const GoogleMapTest = () => {
                             </div>
                             <div className="col-6">
                                 <div></div>
-                                <Link to={`/calendlypages/${truck.id}`}>Book Now!</Link>
+                                <Link className="btn btn-success"
+                                 to={`/calendlypages/${truck.id}`}>Book Now!</Link>
                             </div>
                         </div>
                         <div className="col-3">
@@ -71,15 +52,7 @@ export const GoogleMapTest = () => {
 
                 ))}
 
-                <div className="alert alert-info">
-                    {store.message ? (
-                        <span>{store.message}</span>
-                    ) : (
-                        <span className="text-danger">
-                            Loading message from the backend (make sure your python 🐍 backend is running)...
-                        </span>
-                    )}
-                </div>
+                
             </div>
         </div>
     );

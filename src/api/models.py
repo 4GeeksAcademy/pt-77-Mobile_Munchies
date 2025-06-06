@@ -33,7 +33,7 @@ class Vendor(db.Model):
     price: Mapped[int] = mapped_column(nullable=False)
     picture: Mapped[str] = mapped_column(nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
-    calendly_url: Mapped[str] = mapped_column(String(120), nullable=False)
+    calendly_url: Mapped[str] = mapped_column(String(120), nullable=True)#change to False later
     bookings=relationship("Booking", back_populates="vendor")
     
 
