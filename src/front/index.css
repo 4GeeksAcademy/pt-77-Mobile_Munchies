@@ -77,10 +77,12 @@ i.fa-solid.fa-eye {
   position: absolute;
   bottom: 0;
   width: 100%;
+
 }
-.logo {
-  height: 90px;
-  width: 100px;
+.logo{
+    height: 90px;
+    width: 150px;
+    padding-left:30px;
 }
 .rating {
   float: left;
@@ -108,4 +110,55 @@ i.fa-solid.fa-eye {
 }
 .merchTitle4 {
   margin-left: 615px;
+}
+* .menubuttons{
+    justify-content: center;
+    align-items: center;
+    padding-left: 62px;
+}
+.menubuttons2{
+    justify-content: center;
+    align-items: center;
+    padding-left: 58px;
+}
+.menubuttons3{
+    justify-content: center;
+    align-items: center;
+    padding-left: 62px;
+}
+.menubuttons4{
+    justify-content: center;
+    align-items: center;
+    padding-left: 62px;
+}
+.menubuttons5{
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
+}
+.menubuttons6{
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
+} */
+.title{
+    padding-right:300px;
+}
+.dropdown{
+    padding-right:75px;
+}
+.custom-background {
+  background-color: grey;
+  box-shadow: 0 64px 64px rgba(188, 5, 5, 0.831);
+}
+
+.menubuttons,
+.menubuttons2,
+.menubuttons3,
+.menubuttons4,
+.menubuttons5,
+.menubuttons6 {
+  display: flex;
+  justify-content: center;
+   margin-bottom: 10%;
 }

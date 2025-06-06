@@ -13,20 +13,26 @@ export const GoogleMapTest = () => {
     }, [])
 
     return (
-        <div className="container">
-            <h1>Google Map Test</h1>
+        <div className="container custom-background">
+            <h1>Our trucks</h1>
             <div className="text-center mt-5">
 
                 {store.foodTrucks?.map((truck, index) => (
                     <div className="d-flex row mt-3" key={index}>
                         <div className="col-3">
-                            <img src="https://picsum.photos/200"/>
+                            <img src={truck.img}
+                                style={{ width: '200px', height: '150px', objectFit: 'cover' }}
+                            />
                         </div>
                         <div className="d-flex col-6 row">
                             <div className="col-6">
                                 <h2>{truck.title}</h2>
                                 <p>{truck.address}</p>
                                 <h5>${truck.price}</h5>
+                                <h2>{truck.name}</h2>
+                                <h6>{truck.address}</h6>
+                                <h6>{truck.cuisine}</h6>
+                                <h4>{truck.rating}</h4>
                             </div>
                             <div className="col-6">
                                 <div></div>
@@ -40,11 +46,6 @@ export const GoogleMapTest = () => {
                             address={truck.address}
                         />
                         </div>
-                        
-                        
-                    
-
-                        
                     </div>
 
                     
