@@ -22,3 +22,45 @@ export default function useGlobalReducer() {
     const { dispatch, store } = useContext(StoreContext)
     return { dispatch, store };
 }
+
+// actions
+const VENDOR_SIGNIN_START= "VENDOR_SIGNIN_START"
+const FETCH_VENDORS_START= "FETCH_VENDORS_START"
+export const vendorSignIn= async(dispatch, email, password) => {
+    const response= await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/vendor/signin`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email, password
+        })
+    })
+    const result= await response.json()
+        
+    if (response.ok){
+        sessionStorage.setItem("vendorToken", result.access_token)
+        return {success:true, result}
+    } else {
+        return{success:false, error:result.msg}
+    }
+
+}
+export const fetch_vendors= async(dispatch) => {
+    console.log(import.meta.env.VITE_BACKEND_URL)
+    const response= await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/vendors`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    const result= await response.json()
+
+    if (response.ok){
+        dispatch({type: FETCH_VENDORS_START, payload: result})
+        return {success:true, vendors: result}
+    } else {
+        return{success:false, error:result.msg}
+    } 
+
+}

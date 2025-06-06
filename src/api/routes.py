@@ -11,6 +11,7 @@ from flask_cors import cross_origin
 
 api = Blueprint('api', __name__)
 
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -19,6 +20,7 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
 
 # Allow User to log in with email and password from User or Vendor accounts
 @api.route('/token', methods=['POST'])
@@ -207,7 +209,7 @@ def signup():
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({"message": "User already exists"}), 409
-    
+
     hashed_password = generate_password_hash(password)
     new_user = User(
         name=name,
@@ -218,7 +220,6 @@ def signup():
 
     db.session.add(new_user)
     db.session.commit()
-
 
     return jsonify({"message": "User registered successfully, You may Login."}), 201
 
@@ -242,6 +243,25 @@ def handle_get_each_vendor(vendor_id):
 # Post/Create a Vendor
 
 
+@api.route('/vendor/signin', methods=['POST'])
+def vendor_signin():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+
+    if not email or not password:
+         return jsonify({"msg": "Missing email or password"}), 400
+    
+    vendor = Vendor.query.filter_by(email=email).first()
+    access_token= create_access_token(identity={"id": vendor.id})
+
+    return jsonify({
+        "access_token": access_token,
+        "vendor": vendor.serialize(),
+        "message": "vendor signed in succesfully",
+
+    }), 200
+
 @api.route('/vendor/signup', methods=['POST'])
 def vendor_signup():
     title = request.json.get("title", None)
@@ -252,7 +272,6 @@ def vendor_signup():
     picture = request.json.get("picture", None)
     is_active = request.json.get("is_active", None)
     calendly_url = request.json.get("calendly_url", "None")
-
 
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
         return jsonify({"msg": "Some fields are missing in your request"}), 400
@@ -265,6 +284,7 @@ def vendor_signup():
     return jsonify({"message": "Trucker Account registered successfully, You may Login."}), 201
 
 # Edit a Vendor
+
 
 @api.route('/vendors/<int:vendor_id>', methods=['PUT'])
 def update_vendor(vendor_id):
