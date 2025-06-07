@@ -95,9 +95,9 @@ def setup_commands(app):
             "email": "test@test9.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min"
-        },
-
+        }
     ]
+
 
     @app.cli.command("insert-test-users")  # name of our command
     @click.argument("count")  # argument of out command

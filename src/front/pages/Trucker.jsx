@@ -20,7 +20,7 @@ export const TruckersignUp = () => {
     e.preventDefault();
 
     const res = await fetch(
-      import.meta.env.VITE_BACKEND_URL + "/api/vendor/signup",
+      import.meta.env.VITE_BACKEND_URL + "/vendor/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
