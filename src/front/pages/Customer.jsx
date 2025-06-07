@@ -13,7 +13,7 @@ export const CustomersignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/signup", {
+    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/signup", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),

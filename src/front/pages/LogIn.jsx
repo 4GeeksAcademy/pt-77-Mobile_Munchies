@@ -32,7 +32,7 @@ export const LogIn = () => {
       return;
     }
     try {
-      const resp = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/token", {
+      const resp = await fetch(import.meta.env.VITE_BACKEND_URL + "/token", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
