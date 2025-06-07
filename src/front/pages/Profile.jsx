@@ -12,7 +12,7 @@ export const Profilepage = () => {
   useEffect(() => {
     const token = sessionStorage.getItem("token");
 
-    fetch(import.meta.env.VITE_BACKEND_URL + "/api/profile", {
+    fetch(import.meta.env.VITE_BACKEND_URL + "/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
