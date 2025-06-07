@@ -68,7 +68,7 @@ export const Profilepage = () => {
             email: formData.email,
           };
 
-    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "api/profile", {
+    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/profile", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
