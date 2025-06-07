@@ -13,8 +13,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-light bg-light position-relative">
-      
+    <nav className="navbar custom-navbar position-relative">
       <div className="d-flex align-items-center">
         <Link to="/">
           <img
@@ -27,12 +26,11 @@ export const Navbar = () => {
 
       <div
         className="position-absolute top-50 start-50 translate-middle"
-        style={{ zIndex: 1 }} 
+        style={{ zIndex: 1 }}
       >
         <h1 className="mb-0 text-center">MOBILE MUNCHIES</h1>
       </div>
 
-      {/* Right side: Dropdown menu */}
       <div className="dropdown ms-auto">
         <button
           className="btn btn-danger dropdown-toggle pr-3"
@@ -42,56 +40,42 @@ export const Navbar = () => {
         >
           Dropdown
         </button>
-        <ul className="dropdown-menu dropdown-menu-end">
-         
-          <li>
+        <ul className="dropdown-menu dropdown-menu-end text-center">
+          <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons">
               {!isLoggedIn && (
-                <Link className="btn btn-danger login me-2" to="/login">
+                <Link className="text-decoration-none login text-light" to="/login">
                   Login
                 </Link>
               )}
             </div>
           </li>
-          <li>
+          <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons2">
               {!isLoggedIn && (
-                <Link className="btn btn-danger signup me-2" to="/signup">
+                <Link className="text-decoration-none text-light signup me-2" to="/signup">
                   Signup
                 </Link>
               )}
             </div>
           </li>
-          <li>
-            <div className="menubuttons3">
-              {isLoggedIn && (
-                <button className="btn btn-danger" onClick={handleLogout}>
+          {isLoggedIn && (
+            <li className="btn btn-danger d-grid m-1">
+              <div className="menubuttons3">
+                <button className="text-decoration-none text-light" onClick={handleLogout}>
                   Log Out
                 </button>
-              )}
-            </div>
-          </li>
-          <li>
+              </div>
+            </li>
+          )}
+          <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons4">
-              <Link to="/components/Merch">
-                <button type="button" className="btn btn-danger">
-                  Merch
-                </button>
-              </Link>
+              <Link to="/components/Merch" className="text-decoration-none text-light"> Merch </Link>
             </div>
           </li>
-          <li>
+          <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons5">
-              <Link to="/googlemaptest">
-                <button className="btn btn-danger">Trucks</button>
-              </Link>
-            </div>
-          </li>
-          <li>
-            <div className="menubuttons6">
-              <Link to="/calendlypages">
-                <button className="btn btn-danger">Booking</button>
-              </Link>
+              <Link className="text-decoration-none text-light" to="/googlemaptest"> Trucks </Link>
             </div>
           </li>
         </ul>

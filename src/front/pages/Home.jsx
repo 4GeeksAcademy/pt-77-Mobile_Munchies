@@ -9,14 +9,14 @@ export const Home = () => {
 
   return (
     <div className="eventsandtrucks">
-      <div className="container">
+      <div className="container mt-4">
         <div className="row">
-          <div className="col-sm ">
-            <div className="card ">
+          <div className="col-sm d-flex">
+            <div className="card h-100">
               <img src={picture2} className="card-img-top" alt="..." />
-              <div className="card-body">
+              <div className="card-body d-flex flex-column justify-content-between">
                 <div className="d-flex justify-content-center">
-                  <Link className="" to={"/truckersignup"}>
+                  <Link to={"/truckersignup"}>
                     <button type="button" className="btn btn-danger">
                       Register your truck
                     </button>
@@ -25,10 +25,11 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm">
-            <div className="card">
-              <img src={picture} ClassName="card-img-top" alt="..." />
-              <div className="card-body">
+
+          <div className="col-sm d-flex">
+            <div className="card h-100">
+              <img src={picture} className="card-img-top" alt="..." />
+              <div className="card-body d-flex flex-column justify-content-between">
                 <div className="d-flex justify-content-center">
                   <Link to="/googlemaptest">
                     <button type="button" className="btn btn-danger">
@@ -65,8 +66,8 @@ export const Home = () => {
           ></button>
         </div>
         <div
-          className="carousel-inner py-5"
-          style={{ backgroundColor: "grey" }}
+          className="carousel-inner py-5 carousel-gradient"
+          
         >
           <div className="carousel-item active align-items-center justify-content-center ms-5">
             <div

@@ -22,7 +22,10 @@ def setup_commands(app):
             "price": 1,
             "email": "test@test.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s",
+            "cuisine": "American comfort food, burgers, and sandwiches",
+            "rating": "4.8 Stars"
         },
         {
             "title": "Leo's Tacos Truck",
@@ -30,7 +33,10 @@ def setup_commands(app):
             "price": 2,
             "email": "test@test1.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s",
+            "cuisine": "Mexican and Guatamalan food",
+            "rating": "5 Stars"
         },
         {
             "title": "Tamix Mexican Food Truck",
@@ -38,7 +44,10 @@ def setup_commands(app):
             "price": 3,
             "email": "test@test2.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Los Brothers Food Truck",
@@ -46,7 +55,10 @@ def setup_commands(app):
             "price": 4,
             "email": "test@test3.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Tacos De Valle Al Carbon",
@@ -54,7 +66,10 @@ def setup_commands(app):
             "price": 5,
             "email": "test@test4.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture": "https://cdn.corner.inc/place-photo/Aaw_FcJuOldJG4CKwjOuhX9c1P128lVds_TTceuJP7GdmiNkxzpvVur12qIjpfL9I3HjyxD5ePl3NowvyVugUe4AbPcSWVY7T7qzJDLVCAnfaCnY_EBhEGv8_mzDeWRtswcdpbR39SdwzoPIIVtuAla-AriMeFJJfhr330wg6q4GzUY1qE48.jpeg",
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Tacos Como En El D.F. Taco Truck",
@@ -62,7 +77,10 @@ def setup_commands(app):
             "price": 6,
             "email": "test@test5.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Chiquis Taco Truck",
@@ -70,7 +88,10 @@ def setup_commands(app):
             "price": 7,
             "email": "test@test6.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Bun & Blanket",
@@ -78,7 +99,10 @@ def setup_commands(app):
             "price": 8,
             "email": "test@test7.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "Birrieria Los Gonzalez - Lunch Truck",
@@ -86,7 +110,10 @@ def setup_commands(app):
             "price": 9,
             "email": "test@test8.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
         {
             "title": "El Flamin Taco - Korea Town",
@@ -94,7 +121,10 @@ def setup_commands(app):
             "price": 10,
             "email": "test@test9.com",
             "password": "test1",
-            "calendly_url": "https://calendly.com/mobilemunchies/30min"
+            "calendly_url": "https://calendly.com/mobilemunchies/30min",
+            "picture":,
+            "cuisine":,
+            "rating":
         },
 
     ]
@@ -125,6 +155,9 @@ def setup_commands(app):
             vendor.password = truck["password"]
             vendor.is_active = True
             vendor.calendly_url = truck["calendly_url"]
+            vendor.picture = truck["picture"]
+            vendor.cuisine = truck["cuisine"]
+            vendor.rating = truck["rating"]
             db.session.add(vendor)
             db.session.commit()
             print("Vendor: ", vendor.email, " created.")
