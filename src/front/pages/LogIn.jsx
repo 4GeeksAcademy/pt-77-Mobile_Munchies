@@ -32,7 +32,7 @@ export const LogIn = () => {
       return;
     }
     try {
-      const resp = await fetch('https://miniature-zebra-g4rrw6gx4xw6c9j7r-3001.app.github.dev/api/token', {
+      const resp = await fetch(import.meta.env.VITE_BACKEND_URL + "/token", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
