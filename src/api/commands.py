@@ -25,7 +25,7 @@ def setup_commands(app):
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
             "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s",
             "cuisine": "American comfort food, burgers, and sandwiches",
-            "rating": "4.8 Stars"
+            "rating": "4.8 Stars",
         },
         {
             "title": "Leo's Tacos Truck",
@@ -35,8 +35,8 @@ def setup_commands(app):
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
             "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s",
-            "cuisine": "Mexican and Guatamalan food",
-            "rating": "5 Stars"
+            "cuisine": "Mexican street food and tacos",
+            "rating": "4.5 Stars",
         },
         {
             "title": "Tamix Mexican Food Truck",
@@ -45,9 +45,9 @@ def setup_commands(app):
             "email": "test@test2.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5fdBOXrkrI3xZ_QptfGpHzrk5chUI5T-p6SBy-EAt67xUux2QPYCxE6e8Urp2qOfeARRTwSH_nelv0Yko5kGdu47RWCg3MpaKRN-D6tVsOvVvl2RX9f9K5WJTFLIGZGw6JTPUWBU_hh42/w1200-h630-p-k-no-nu/MVIMG_20190917_211205+copy.jpg",
+            "cuisine":"Specializes in el pastor tacos",
+            "rating":"4.5 Stars",
         },
         {
             "title": "Los Brothers Food Truck",
@@ -56,9 +56,9 @@ def setup_commands(app):
             "email": "test@test3.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg",
+            "cuisine":"Mexican and Guatamalan food",
+            "rating":"5 Stars",
         },
         {
             "title": "Tacos De Valle Al Carbon",
@@ -68,8 +68,8 @@ def setup_commands(app):
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
             "picture": "https://cdn.corner.inc/place-photo/Aaw_FcJuOldJG4CKwjOuhX9c1P128lVds_TTceuJP7GdmiNkxzpvVur12qIjpfL9I3HjyxD5ePl3NowvyVugUe4AbPcSWVY7T7qzJDLVCAnfaCnY_EBhEGv8_mzDeWRtswcdpbR39SdwzoPIIVtuAla-AriMeFJJfhr330wg6q4GzUY1qE48.jpeg",
-            "cuisine":,
-            "rating":
+            "cuisine":"Oaxacan food and tacos",
+            "rating": "4.5 Stars",
         },
         {
             "title": "Tacos Como En El D.F. Taco Truck",
@@ -78,9 +78,9 @@ def setup_commands(app):
             "email": "test@test5.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbv60wP94CR5w6UYeoo3rkOiK5lBOtFnypRQg57z2IAQOBEP2jnPFTxNBDtfp5Ngj_U2s&usqp=CAU",
+            "cuisine": "Mexican cuisine",
+            "rating":  "4.5 Stars",
         },
         {
             "title": "Chiquis Taco Truck",
@@ -89,9 +89,9 @@ def setup_commands(app):
             "email": "test@test6.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://s3-media0.fl.yelpcdn.com/bphoto/eR2K2wZ2ARwc0D_SsanRgQ/348s.jpg",
+            "cuisine":"Late-night taco truck",
+            "rating":"4.5 Stars",
         },
         {
             "title": "Bun & Blanket",
@@ -100,9 +100,9 @@ def setup_commands(app):
             "email": "test@test7.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://s3-media0.fl.yelpcdn.com/bphoto/UiZLAR_m_B8lLQlC4pak3A/348s.jpg",
+            "cuisine":"Los Angeles' most popular flavors into fusionend burgers",
+            "rating": "4.9 Stars",
         },
         {
             "title": "Birrieria Los Gonzalez - Lunch Truck",
@@ -111,9 +111,9 @@ def setup_commands(app):
             "email": "test@test8.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://s3-media0.fl.yelpcdn.com/bphoto/htHal_L1Sf_N70odcm4_GA/348s.jpg",
+            "cuisine":"Casual Mexican restaurant dishing up tacos, quesadillas, and other standards",
+            "rating":"4.4 Stars",
         },
         {
             "title": "El Flamin Taco - Korea Town",
@@ -122,9 +122,9 @@ def setup_commands(app):
             "email": "test@test9.com",
             "password": "test1",
             "calendly_url": "https://calendly.com/mobilemunchies/30min",
-            "picture":,
-            "cuisine":,
-            "rating":
+            "picture":"https://cdn.corner.inc/place-photo/Aaw_FcJuOldJG4CKwjOuhX9c1P128lVds_TTceuJP7GdmiNkxzpvVur12qIjpfL9I3HjyxD5ePl3NowvyVugUe4AbPcSWVY7T7qzJDLVCAnfaCnY_EBhEGv8_mzDeWRtswcdpbR39SdwzoPIIVtuAla-AriMeFJJfhr330wg6q4GzUY1qE48.jpeg",
+            "cuisine":"Popular taco truck offering favorites such as al pastor, carne asada, and quesadillas",
+            "rating":"4.4 Stars",
         },
 
     ]
@@ -146,8 +146,12 @@ def setup_commands(app):
 
     @app.cli.command("insert-test-data")
     def insert_test_data():
+        Vendor.query.delete()
+        db.session.commit()
+        index=0
         for truck in food_trucks:
             vendor = Vendor()
+            vendor.id = index
             vendor.title = truck["title"]
             vendor.address = truck["address"]
             vendor.price = truck["price"]
@@ -161,3 +165,4 @@ def setup_commands(app):
             db.session.add(vendor)
             db.session.commit()
             print("Vendor: ", vendor.email, " created.")
+            index+=1

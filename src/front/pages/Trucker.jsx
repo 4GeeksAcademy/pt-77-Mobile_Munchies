@@ -14,13 +14,12 @@ export const TruckersignUp = () => {
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     const res = await fetch(
-      import.meta.env.VITE_BACKEND_URL + "/api/vendor/signup",
+      import.meta.env.VITE_BACKEND_URL + "/vendor/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,9 +38,10 @@ export const TruckersignUp = () => {
 
     const data = await res.json();
     alert(data.message);
-    if (res.ok) {setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    if (res.ok) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     }
   };
 
@@ -52,9 +52,9 @@ export const TruckersignUp = () => {
   return (
     <div className="wrapper signUp">
       <form onSubmit={(e) => handleSignup(e)} className="form">
-        <div className="heading">CREATE A TRUCKER ACCOUNT</div>
+        <div className="heading text-light">CREATE A TRUCKER ACCOUNT</div>
         <div>
-          <label>Business Title:</label>
+          <label className="text-white">Business Title:</label>
           <input
             type="text"
             id="name"
@@ -64,7 +64,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div>
-          <label>E-Mail:</label>
+          <label className="text-white">E-Mail:</label>
           <input
             type="email"
             id="email"
@@ -74,7 +74,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div style={{ position: "relative" }}>
-          <label>Create Password:</label>
+          <label className="text-white">Create Password:</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -88,7 +88,7 @@ export const TruckersignUp = () => {
           ></i>
         </div>
         <div>
-          <label>Address:</label>
+          <label className="text-white">Address:</label>
           <input
             type="text"
             id="address"
@@ -98,7 +98,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div>
-          <label>Price to Book:</label>
+          <label className="text-white">Price to Book:</label>
           <input
             type="number"
             id="price"
@@ -108,7 +108,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div>
-          <label>Picture:</label>
+          <label className="text-white">Picture:</label>
           <input
             type="text"
             id="picture"
@@ -118,7 +118,7 @@ export const TruckersignUp = () => {
           />
         </div>
         <div>
-          <label>Calendly_url:</label>
+          <label className="text-white">Calendly_url:</label>
           <input
             type="text"
             id="calendly_url"
@@ -129,10 +129,10 @@ export const TruckersignUp = () => {
         </div>
         <button type="Submit">SIGN UP</button>
         {message && <p>{message}</p>}
-        <h2 align="center" className="or">
+        <h2 align="center" className="or text-white">
           OR
         </h2>
-        <p>
+        <p className="text-white">
           Have an account ? <Link to={"/login"}> Login </Link>
         </p>
       </form>

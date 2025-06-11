@@ -20,6 +20,7 @@ export const Navbar = () => {
             className="logo"
             src="https://images.deepai.org/chat-style-image/0459cd1bb41d4e18b3774762886eeac8/output.jpg"
             alt="Logo"
+            style={{ borderRadius: "10px" }}
           />
         </Link>
       </div>
@@ -28,56 +29,80 @@ export const Navbar = () => {
         className="position-absolute top-50 start-50 translate-middle"
         style={{ zIndex: 1 }}
       >
-        <h1 className="mb-0 text-center">MOBILE MUNCHIES</h1>
+        <h1 className="bungee-tint-regular mb-0 text-center text-light">
+          MOBILE MUNCHIES
+        </h1>
       </div>
-
       <div className="dropdown ms-auto">
         <button
           className="btn btn-danger dropdown-toggle pr-3"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+        ></button>
+
+        <ul
+          className="dropdown-menu dropdown-menu-end text-center"
+          style={{ backgroundColor: "black" }}
         >
-          Dropdown
-        </button>
-        <ul className="dropdown-menu dropdown-menu-end text-center">
-          <li className="btn btn-danger d-grid m-1">
-            <div className="menubuttons">
-              {!isLoggedIn && (
-                <Link className="text-decoration-none login text-light" to="/login">
-                  Login
-                </Link>
-              )}
-            </div>
-          </li>
-          <li className="btn btn-danger d-grid m-1">
-            <div className="menubuttons2">
-              {!isLoggedIn && (
-                <Link className="text-decoration-none text-light signup me-2" to="/signup">
-                  Signup
-                </Link>
-              )}
-            </div>
-          </li>
-          {isLoggedIn && (
-            <li className="btn btn-danger d-grid m-1">
-              <div className="menubuttons3">
-                <button className="text-decoration-none text-light" onClick={handleLogout}>
-                  Log Out
-                </button>
-              </div>
-            </li>
+          {!isLoggedIn && (
+            <>
+              <li className="btn btn-danger d-grid m-1">
+                <div className="menubuttons">
+                  <Link
+                    className="text-decoration-none login text-light"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </div>
+              </li>
+              <li className="btn btn-danger d-grid m-1">
+                <div className="menubuttons2">
+                  <Link
+                    className="text-decoration-none text-light signup me-2"
+                    to="/signup"
+                  >
+                    Signup
+                  </Link>
+                </div>
+              </li>
+            </>
           )}
+          <li>
+            {isLoggedIn && (
+              <Link className="btn btn-danger d-grid m-1" to="/profile">
+                Account
+              </Link>
+            )}
+          </li>
           <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons4">
-              <Link to="/components/Merch" className="text-decoration-none text-light"> Merch </Link>
+              <Link
+                to="/components/Merch"
+                className="text-decoration-none text-light"
+              >
+                {" "}
+                Merch{" "}
+              </Link>
             </div>
           </li>
           <li className="btn btn-danger d-grid m-1">
             <div className="menubuttons5">
-              <Link className="text-decoration-none text-light" to="/googlemaptest"> Trucks </Link>
+              <Link
+                className="text-decoration-none text-light"
+                to="/googlemaptest"
+              >
+                {" "}
+                Trucks{" "}
+              </Link>
             </div>
           </li>
+          {isLoggedIn && (
+            <li className="btn btn-danger d-grid m-1" onClick={handleLogout}>
+              <button className="btn btn-danger">Log Out</button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

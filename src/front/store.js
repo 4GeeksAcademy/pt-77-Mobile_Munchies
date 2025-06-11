@@ -35,6 +35,7 @@ export const initialStore = () => {
     //     cuisine: "Mexican and Guatamalan food",
     //     rating: "5 Stars",
     //     cuisine: "American",
+            img:"https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg",
     //   },
     //   {
     //     name: "Tacos De Valle Al Carbon",
