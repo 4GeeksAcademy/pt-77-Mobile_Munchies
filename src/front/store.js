@@ -14,6 +14,7 @@ export const initialStore = () => {
     //     id:1,
     //     cuisine: "Mexican street food and tacos",
     //     rating: "4.5 Stars",
+    //     img:"",
     //   },
     //   {
     //     name: "Leo's Tacos Truck",
@@ -35,7 +36,7 @@ export const initialStore = () => {
     //     cuisine: "Mexican and Guatamalan food",
     //     rating: "5 Stars",
     //     cuisine: "American",
-            img:"https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg",
+    //     img:"https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg",
     //   },
     //   {
     //     name: "Tacos De Valle Al Carbon",

@@ -12,7 +12,9 @@ export const Home = () => {
       <div className="container pt-4">
         <div className="row">
           <div className="col-sm d-flex">
-            <div className="card h-100">
+            <div className="card h-100"
+            style={{boxShadow: "0 16px 32px rgba(126, 3, 3, 0.831)", borderColor:"red"}}
+            >
               <img src={picture2} className="card-img-top" alt="..." />
               <div
                 className="card-body d-flex flex-column justify-content-between"
@@ -30,7 +32,9 @@ export const Home = () => {
           </div>
 
           <div className="col-sm d-flex">
-            <div className="card h-100">
+            <div className="card h-100"
+            style={{boxShadow: "0 16px 32px rgba(126, 3, 3, 0.831)", borderColor:"red"}}
+            >
               <img src={picture} className="card-img-top" alt="..." />
               <div
                 className="card-body d-flex flex-column justify-content-between"

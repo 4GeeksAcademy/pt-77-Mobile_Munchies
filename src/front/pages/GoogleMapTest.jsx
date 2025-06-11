@@ -19,7 +19,7 @@ export const GoogleMapTest = () => {
           <div className="d-flex row mt-3" key={index}>
             <div className="col-3">
               <img
-                src={truck.img}
+                src={truck.picture}
                 style={{
                   width: "200px",
                   height: "150px",

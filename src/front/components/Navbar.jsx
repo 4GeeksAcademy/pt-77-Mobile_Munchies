@@ -29,7 +29,9 @@ export const Navbar = () => {
         className="position-absolute top-50 start-50 translate-middle"
         style={{ zIndex: 1 }}
       >
-        <h1 className="bungee-tint-regular mb-0 text-center text-light">
+        <h1 className="bungee-tint-regular mb-0 text-center"
+        style={{ color: "#dc3545", fontWeight: "bold", }}
+        >
           MOBILE MUNCHIES
         </h1>
       </div>
