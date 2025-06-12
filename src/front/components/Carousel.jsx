@@ -4,7 +4,7 @@ export default function Carousel({ merch, order }) {
       id={"carouselExampleCaptions" + order}
       className="carousel slide"
       data-bs-ride="carousel"
-      style={{ backgroundColor: "grey", height: "80vh" }}
+      style={{ background: "linear-gradient(115deg, #000000, #2c2e29, #000000)", height: "80vh" }}
     >
       <div className="carousel-indicators">
         {merch.map((item, index) => (

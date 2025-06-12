@@ -35,7 +35,8 @@ class Vendor(db.Model):
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
     calendly_url: Mapped[str] = mapped_column(String(120), nullable=True)#change to False later
     bookings=relationship("Booking", back_populates="vendor")
-    
+    rating: Mapped[str] = mapped_column(nullable=False)
+    cuisine: Mapped[str] = mapped_column(nullable=True)
 
     def serialize(self):
         return {
@@ -46,9 +47,9 @@ class Vendor(db.Model):
             "price": self.price,
             "picture": self.picture,
             "is_active": self.is_active,
-            "calendly_url": self.calendly_url
-            # do not serialize 
-            # 
+            "calendly_url": self.calendly_url,
+            "rating": self.rating,
+            "cuisine": self.cuisine,
             # the password, its a security breach
         }
     

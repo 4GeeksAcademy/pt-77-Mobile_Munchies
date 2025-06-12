@@ -82,20 +82,28 @@ export const Merch = () => {
 
   return (
     <>
-    <div className="merchTitle">
-    <h2>Shirts</h2>
+    <div className="merchTitle"
+      style={{background:"linear-gradient(0deg,rgba(163, 13, 13, 1) 0%, rgba(220, 53, 69, 1) 100%)"}}
+    >
+    <h2 className="mb-0">Shirts</h2>
     </div>
       <Carousel merch={merch.carousel1} order={1} />
-   <div className="merchTitle2">
-    <h2>Hats</h2>
+   <div className="merchTitle2 mb-0"
+   style={{background:"linear-gradient(0deg,rgba(163, 13, 13, 1) 0%, rgba(220, 53, 69, 1) 100%)"}}
+   >
+    <h2 className="mb-0">Hats</h2>
     </div>
       <Carousel merch={merch.carousel2} order={2} />
-<div className="merchTitle3">
-    <h2>Toys & Goodies</h2>
+<div className="merchTitle3"
+  style={{background:"linear-gradient(0deg,rgba(163, 13, 13, 1) 0%, rgba(220, 53, 69, 1) 100%)"}}
+>
+    <h2 className="mb-0">Toys & Goodies</h2>
     </div>
       <Carousel merch={merch.carousel3} order={3} />
-<div className="merchTitle4">
-    <h2>Stickers</h2>
+<div className="merchTitle4"
+style={{background:"linear-gradient(0deg,rgba(163, 13, 13, 1) 0%, rgba(220, 53, 69, 1) 100%)"}}
+>
+    <h2 className="mb-0">Stickers</h2>
     </div>
       <Carousel merch={merch.carousel4} order={4} />
     </>

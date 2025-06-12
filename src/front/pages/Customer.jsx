@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const CustomersignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -14,32 +14,34 @@ export const CustomersignUp = () => {
     e.preventDefault();
 
     const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/signup", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
     });
 
     const data = await res.json();
     alert(data.message);
-    if (res.ok) {setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    if (res.ok) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     }
   };
-
 
   const toggleVisibility = (setter) => {
     setter((prev) => !prev);
   };
 
-
   return (
     <div className="wrapper signUp">
       <form onSubmit={handleSignup} className="form">
-        <div className="heading">CREATE CUSTOMER ACCOUNT</div>
+        <div className="heading text-white">CREATE CUSTOMER ACCOUNT</div>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text"
+          <label className="text-white" htmlFor="name">
+            Name:
+          </label>
+          <input
+            type="text"
             id="name"
             placeholder="Enter your name"
             value={name}
@@ -47,8 +49,11 @@ export const CustomersignUp = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">E-Mail:</label>
-          <input type="email"
+          <label className="text-white" htmlFor="email">
+            E-Mail:
+          </label>
+          <input
+            type="email"
             id="email"
             placeholder="Enter your E-Mail"
             value={email}
@@ -56,7 +61,9 @@ export const CustomersignUp = () => {
           />
         </div>
         <div style={{ position: "relative" }}>
-          <label htmlFor="password">Create Password:</label>
+          <label className="text-white" htmlF or="password">
+            Create Password:
+          </label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -71,13 +78,13 @@ export const CustomersignUp = () => {
         </div>
         <button type="Submit">SIGN UP</button>
         {message && <p>{message}</p>}
-        <h2 align="center" className="or">
+        <h2 align="center" className="or text-white">
           OR
         </h2>
-        <p>
+        <p className="text-white">
           Have an account ? <Link to={"/login"}> Login </Link>
         </p>
       </form>
     </div>
   );
-}
+};

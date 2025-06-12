@@ -17,7 +17,7 @@ export const LogIn = () => {
       setUserName(storedName);
     }
   }, []);
-  
+
   const toggleVisibility = (setter) => {
     setter((prev) => !prev);
   };
@@ -35,20 +35,20 @@ export const LogIn = () => {
       const resp = await fetch(import.meta.env.VITE_BACKEND_URL + "/token", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       if (resp.status === 200) {
         const data = await resp.json();
         sessionStorage.setItem("token", data.access_token);
         if (data.user && data.user.name) {
-        sessionStorage.setItem("userName", data.user.name);
-        setUserName(data.user.name);
+          sessionStorage.setItem("userName", data.user.name);
+          setUserName(data.user.name);
         } else if (data.vendor && data.vendor.title) {
-        sessionStorage.setItem("userName", data.vendor.title);
-        setUserName(data.vendor.title);
-      }
-      navigate("/");
+          sessionStorage.setItem("userName", data.vendor.title);
+          setUserName(data.vendor.title);
+        }
+        navigate("/");
       } else {
         setError("Invalid email or password.");
       }
@@ -61,14 +61,16 @@ export const LogIn = () => {
   return (
     <div className="wrapper signIn">
       <div className="form">
-        <div className="heading">LOGIN</div>
+        <div className="heading text-white">LOGIN</div>
 
-        {(token && userName) ? (
+        {token && userName ? (
           <p>Welcome, {userName}!</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email">E-Mail Address:</label>
+              <label className="text-white" htmlFor="email ">
+                E-Mail Address:
+              </label>
               <input
                 type="email"
                 id="email"
@@ -78,7 +80,9 @@ export const LogIn = () => {
               />
             </div>
             <div style={{ position: "relative" }}>
-              <label htmlFor="password">Password:</label>
+              <label className="text-white" htmlFor="password">
+                Password:
+              </label>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -87,13 +91,15 @@ export const LogIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <i
-                className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+                className={`fa-solid ${
+                  showPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
                 onClick={() => toggleVisibility(setShowPassword)}
               ></i>
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <button type="submit">LOGIN</button>
-            <p>
+            <p className="text-white">
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
           </form>
