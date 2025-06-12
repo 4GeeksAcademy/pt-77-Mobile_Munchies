@@ -134,6 +134,9 @@ def update_profile():
         price = data.get("price")
         picture = data.get("picture")
         calendly_url = data.get("calendly_url")
+        rating = data.get("rating")
+        cuisine = data.get("cuisine")
+
 
         if not new_title or not new_email:
             return jsonify({"msg": "Title and email are required"}), 400
@@ -154,6 +157,8 @@ def update_profile():
             vendor.price = price
             vendor.picture = picture
             vendor.calendly_url = calendly_url
+            vendor.rating = rating
+            vendor.cuisine = cuisine
             db.session.commit()
             return jsonify(vendor.serialize()), 200
 
@@ -272,6 +277,8 @@ def vendor_signup():
     picture = request.json.get("picture", None)
     is_active = request.json.get("is_active", None)
     calendly_url = request.json.get("calendly_url", "None")
+    rating = request.json.get("rating", "None")
+    cuisine = request.json.get("cuisine", "None")
 
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
         return jsonify({"msg": "Some fields are missing in your request"}), 400
@@ -295,6 +302,8 @@ def update_vendor(vendor_id):
     picture = request.json.get("picture")
     is_active = request.json.get("is_active")
     calendly_url = request.json.get("calendly_url")
+    rating = request.json.get("rating", "None")
+    cuisine = request.json.get("cuisine", "None")
 
     if title is None or email is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
         return jsonify({"msg": "Some fields are missing in your request"})
@@ -310,6 +319,8 @@ def update_vendor(vendor_id):
     vendor.picture = picture
     vendor.is_active = is_active
     vendor.calendly_url = calendly_url
+    vendor.rating = rating
+    vendor.cuisine = cuisine
 
     db.session.commit()
     return jsonify(vendor.serialize()), 200

@@ -9,14 +9,19 @@ export const Home = () => {
 
   return (
     <div className="eventsandtrucks">
-      <div className="container">
+      <div className="container pt-4">
         <div className="row">
-          <div className="col-sm ">
-            <div className="card ">
+          <div className="col-sm d-flex">
+            <div className="card h-100"
+            style={{boxShadow: "0 16px 32px rgba(126, 3, 3, 0.831)", borderColor:"red"}}
+            >
               <img src={picture2} className="card-img-top" alt="..." />
-              <div className="card-body">
+              <div
+                className="card-body d-flex flex-column justify-content-between"
+                style={{ backgroundColor: "black" }}
+              >
                 <div className="d-flex justify-content-center">
-                  <Link className="" to={"/truckersignup"}>
+                  <Link to={"/truckersignup"}>
                     <button type="button" className="btn btn-danger">
                       Register your truck
                     </button>
@@ -25,10 +30,16 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm">
-            <div className="card">
-              <img src={picture} ClassName="card-img-top" alt="..." />
-              <div className="card-body">
+
+          <div className="col-sm d-flex">
+            <div className="card h-100"
+            style={{boxShadow: "0 16px 32px rgba(126, 3, 3, 0.831)", borderColor:"red"}}
+            >
+              <img src={picture} className="card-img-top" alt="..." />
+              <div
+                className="card-body d-flex flex-column justify-content-between"
+                style={{ backgroundColor: "black" }}
+              >
                 <div className="d-flex justify-content-center">
                   <Link to="/googlemaptest">
                     <button type="button" className="btn btn-danger">
@@ -64,23 +75,22 @@ export const Home = () => {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div
-          className="carousel-inner py-5"
-          style={{ backgroundColor: "grey" }}
-        >
-          <div className="carousel-item active align-items-center justify-content-center ms-5">
+        <div className="carousel-inner py-5 carousel-gradient">
+          <div className="carousel-item active ms-5">
             <div
               className="d-flex justify-content-center"
               style={{ width: "75rem" }}
             >
               <img
-                className="d-flex justify-content-end w-25 h-25 shadowed-image"
+                className="d-flex justify-content-end shadowed-image"
                 src="https://s3-media0.fl.yelpcdn.com/bphoto/-4INPXjgHpcNYkZuLNRBJg/l.jpg"
                 alt="..."
+                height="300rem"
+                width="300rem"
               />
               <div
-                className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
-                style={{ width: "15%" }}
+                className="fs-5 d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
+                style={{ width: "210px" }}
               >
                 <div>
                   <h5>Los brothers</h5>
@@ -89,7 +99,8 @@ export const Home = () => {
                   <p>100% homemade Guatemalan and Mexican food</p>
                 </div>
                 <div>Rating: 5/5 stars</div>
-                <Link to="/components/Trucks">
+
+                <Link to="/components/Trucks" className="mt-2">
                   <button type="button" className="btn btn-danger">
                     Learn more
                   </button>
@@ -97,22 +108,23 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="carousel-item  align-items-center justify-content-center">
+          <div className="carousel-item ms-5">
             <div
               className="d-flex justify-content-center"
               style={{ width: "75rem" }}
             >
               <img
-                className="d-flex justify-content-end w-25 h-25 shadowed-image"
+                className="d-flex justify-content-end shadowed-image"
                 src="https://s3-media0.fl.yelpcdn.com/bphoto/UiZLAR_m_B8lLQlC4pak3A/348s.jpg"
                 alt="..."
+                height="300rem"
+                width="300rem"
               />
               <div
-                className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
-                style={{ width: "15%" }}
+                className="fs-5 d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
+                style={{ width: "210px" }}
               >
                 <div>
-                  {" "}
                   <h5>Bun & Blanket</h5>
                 </div>
                 <div>
@@ -121,7 +133,7 @@ export const Home = () => {
                   </p>
                 </div>
                 <div>Rating: 4.9/5 Stars</div>
-                <Link to="/components/Trucks">
+                <Link to="/components/Trucks" className="mt-2">
                   <button type="button" className="btn btn-danger">
                     Learn more
                   </button>
@@ -129,33 +141,38 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="carousel-item align-items-center justify-content-center">
+          <div className="carousel-item ms-5">
             <div
               className="d-flex justify-content-center"
               style={{ width: "75rem" }}
             >
               <img
-                className="d-flex justify-content-end w-25 h-25 shadowed-image"
+                className="d-flex justify-content-end shadowed-image"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sKspFDNViqDBCtANWOx4Jmo-YkCXQCMkVw&s"
                 alt="..."
+                height="300rem"
+                width="300rem"
               />
               <div
-                className="d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
-                style={{ width: "15%" }}
+                className="fs-5 d-flex flex-column text-center justify-content-center  shadowed-image align-items-center bg-dark text-white"
+                style={{ width: "210px" }}
               >
                 <div>
                   <h5>Sunset Smash</h5>
                 </div>
+                <div>
+                  <p>
+                    Smash burgers and fries brought to LA by two life-long
+                    friends
+                  </p>
+                </div>
+                <div>Rating: 4.8/5 stars</div>
 
-                <p>
-                  Smash burgers and fries brought to LA by two life-long friends
-                  <div>Rating: 4.8/5 stars</div>
-                  <Link to="/components/Trucks">
-                    <button type="button" className="btn btn-danger">
-                      Learn more
-                    </button>
-                  </Link>
-                </p>
+                <Link to="/components/Trucks" className="mt-2">
+                  <button type="button" className="btn btn-danger">
+                    Learn more
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

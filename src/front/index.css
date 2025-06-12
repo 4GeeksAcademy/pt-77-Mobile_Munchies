@@ -28,12 +28,14 @@ i.fa-solid.fa-eye-slash {
   justify-content: end;
   margin-top: 5px;
   font-size: 20px;
+  color: white;
 }
 i.fa-solid.fa-eye {
   display: flex;
   justify-content: end;
   margin-top: 5px;
   font-size: 20px;
+   color: white;
 }
 .form input {
   height: 40px;
@@ -63,9 +65,12 @@ i.fa-solid.fa-eye {
   margin: auto;
   border-style: solid;
   border-radius: 10px;
-  width: 20%;
+  width: 25%;
   margin-top: 5%;
+  background: linear-gradient(115deg, #000000, #2c2e29, #000000);
+  box-shadow: 0 32px 64px rgba(126, 3, 3, 0.831);
 }
+
 .form {
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
@@ -74,12 +79,12 @@ i.fa-solid.fa-eye {
   position: absolute;
   bottom: 0;
   width: 100%;
-
 }
 .logo{
     height: 90px;
-    width: 150px;
-    padding-left:30px;
+    width: 130px;
+    margin-left:30px;
+    border-Radius: 10px;
 }
 .rating {
   float: left;
@@ -97,46 +102,46 @@ i.fa-solid.fa-eye {
   box-shadow: 0 16px 32px rgba(188, 5, 5, 0.831);
 }
 .merchTitle {
-  margin-left: 630px;
+  padding-left: 630px;
 }
 .merchTitle2 {
-  margin-left: 638px;
+  padding-left: 638px;
 }
 .merchTitle3 {
-  margin-left: 560px;
+ padding-left: 560px;
 }
 .merchTitle4 {
-  margin-left: 615px;
+  padding-left: 615px;
 }
 * .menubuttons{
     justify-content: center;
     align-items: center;
-    padding-left: 62px;
+    
 }
 .menubuttons2{
     justify-content: center;
     align-items: center;
-    padding-left: 58px;
+    
 }
 .menubuttons3{
     justify-content: center;
     align-items: center;
-    padding-left: 62px;
+    
 }
 .menubuttons4{
     justify-content: center;
     align-items: center;
-    padding-left: 62px;
+    
 }
 .menubuttons5{
     justify-content: center;
     align-items: center;
-    padding-left: 50px;
+    
 }
 .menubuttons6{
     justify-content: center;
     align-items: center;
-    padding-left: 50px;
+    
 } */
 .title{
     padding-right:300px;
@@ -145,7 +150,7 @@ i.fa-solid.fa-eye {
     padding-right:75px;
 }
 .custom-background {
-  background-color: grey;
+  background: linear-gradient(115deg, #000000, #2c2e29, #000000);
   box-shadow: 0 64px 64px rgba(188, 5, 5, 0.831);
 }
 
@@ -164,4 +169,29 @@ div.profile-card{
   text-align: center;
   width: 25%;
   border-radius: 10px;
+}
+.custom-navbar {
+background: linear-gradient(115deg, #000000, #2c2e29, #000000)
+
+
+}
+
+.carousel-gradient {
+background: linear-gradient(115deg, #000000, #2c2e29, #000000)
+
+}
+.eventsandtrucks {
+  background: linear-gradient(115deg, #000000, #2c2e29, #000000)
+}
+ .carousel-item {
+    transition: transform 2.5s ease-in-out;
+  }
+  .carousel-fade .active.carousel-item-start,
+  .carousel-fade .active.carousel-item-end {
+    transition: opacity 0s 1s;
+  }
+.bungee-tint-regular {
+  font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
