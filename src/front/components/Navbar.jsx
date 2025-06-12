@@ -105,6 +105,13 @@ export const Navbar = () => {
               <button className="btn btn-danger">Log Out</button>
             </li>
           )}
+          <li>
+            {isLoggedIn && (
+              <Link className="btn btn-primary signup me-2" to="/profile">
+                Account
+              </Link>
+					  )}
+          </li>
         </ul>
       </div>
     </nav>

@@ -27,7 +27,7 @@ export default function useGlobalReducer() {
 const VENDOR_SIGNIN_START= "VENDOR_SIGNIN_START"
 const FETCH_VENDORS_START= "FETCH_VENDORS_START"
 export const vendorSignIn= async(dispatch, email, password) => {
-    const response= await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/vendor/signin`, {
+    const response= await fetch(`${import.meta.env.VITE_BACKEND_URL}/vendor/signin`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
