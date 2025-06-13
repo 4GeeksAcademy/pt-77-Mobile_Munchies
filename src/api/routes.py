@@ -276,9 +276,9 @@ def vendor_signup():
     price = request.json.get("price", None)
     picture = request.json.get("picture", None)
     is_active = request.json.get("is_active", None)
-    calendly_url = request.json.get("calendly_url", "None")
-    rating = request.json.get("rating", "None")
-    cuisine = request.json.get("cuisine", "None")
+    calendly_url = request.json.get("calendly_url", None)
+    rating = request.json.get("rating", 0.0)
+    cuisine = request.json.get("cuisine", "")
 
     if title is None or email is None or password is None or address is None or price is None or picture is None or is_active is None or calendly_url is None:
         return jsonify({"msg": "Some fields are missing in your request"}), 400

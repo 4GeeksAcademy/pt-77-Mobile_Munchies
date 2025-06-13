@@ -33,17 +33,17 @@ export const Profilepage = () => {
   }, []);
 
   useEffect(() => {
-  if (updateMsg) {
-    const timer = setTimeout(() => setUpdateMsg(""), 4000);
-    return () => clearTimeout(timer);
-  }
+    if (updateMsg) {
+      const timer = setTimeout(() => setUpdateMsg(""), 4000);
+      return () => clearTimeout(timer);
+    }
   }, [updateMsg]);
 
   useEffect(() => {
-  if (passwordMsg) {
-    const timer = setTimeout(() => setPasswordMsg(""), 4000);
-    return () => clearTimeout(timer);
-  }
+    if (passwordMsg) {
+      const timer = setTimeout(() => setPasswordMsg(""), 4000);
+      return () => clearTimeout(timer);
+    }
   }, [passwordMsg]);
 
   const handleChange = (e) => {
@@ -62,6 +62,8 @@ export const Profilepage = () => {
             price: formData.price,
             calendly_url: formData.calendly_url,
             picture: formData.picture,
+            rating: formData.rating,
+            cuisine: formData.cuisine,
           }
         : {
             name: formData.name,
@@ -118,118 +120,158 @@ export const Profilepage = () => {
 
   return (
     <div className="d-flex justify-content-center mt-5">
-        <div className="profile-card">
-            <h2>Profile Page</h2>
-            {updateMsg && <div className="alert alert-info mt-2">{updateMsg}</div>}
-            {!editMode ? (
-                <div className="mb-4">
-                {profile.role === "user" ? (
-                    <>
-                    <p><strong>Name:</strong> {formData.name}</p>
-                    <p><strong>Email:</strong> {formData.email}</p>
-                    </>
-                ) : (
-                    <>
-                    <p><strong>Title:</strong> {formData.name}</p>
-                    <p><strong>Email:</strong> {formData.email}</p>
-                    <p><strong>Address:</strong> {formData.address}</p>
-                    <p><strong>Price:</strong> ${formData.price}</p>
-                    <p><strong>Calendly:</strong> {formData.calendly_url}</p>
-                    </>
-                )}
-                <button className="btn btn-danger" onClick={() => setEditMode(true)}>
-                    Edit Profile
-                </button>
-                </div>
+      <div className="profile-card">
+        <h2>Profile Page</h2>
+        {updateMsg && <div className="alert alert-info mt-2">{updateMsg}</div>}
+        {!editMode ? (
+          <div className="mb-4">
+            {profile.role === "user" ? (
+              <>
+                <p>
+                  <strong>Name:</strong> {formData.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {formData.email}
+                </p>
+              </>
             ) : (
-                <div className="mb-4">
-                {profile.role === "user" ? (
-                    <>
-                    <label>Name</label>
-                    <input
-                        name="name"
-                        className="form-control mb-2"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    <label>Email</label>
-                    <input
-                        name="email"
-                        className="form-control mb-2"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    </>
-                ) : (
-                    <>
-                    <label>Title</label>
-                    <input
-                        name="name"
-                        className="form-control mb-2"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    <label>Email</label>
-                    <input
-                        name="email"
-                        className="form-control mb-2"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    <label>Address</label>
-                    <input
-                        name="address"
-                        className="form-control mb-2"
-                        value={formData.address}
-                        onChange={handleChange}
-                    />
-                    <label>Price</label>
-                    <input
-                        name="price"
-                        type="number"
-                        className="form-control mb-2"
-                        value={formData.price}
-                        onChange={handleChange}
-                    />
-                    <label>Calendly URL</label>
-                    <input
-                        name="calendly_url"
-                        className="form-control mb-2"
-                        value={formData.calendly_url}
-                        onChange={handleChange}
-                    />
-                    </>
-                )}
-                <button className="btn btn-danger me-2" onClick={saveChanges}>
-                    Save Changes
-                </button>
-                <button className="btn btn-secondary" onClick={() => setEditMode(false)}>
-                    Cancel
-                </button>
-                {updateMsg && <p className="mt-2">{updateMsg}</p>}
-                <hr />
-                <h5>Change Password</h5>
-                <input
-                    type="password"
-                    placeholder="Current Password"
-                    className="form-control mb-2"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="New Password"
-                    className="form-control mb-2"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                />
-                <button className="btn btn-danger" onClick={handlePasswordChange}>
-                    Update Password
-                </button>
-                {passwordMsg && <p className="mt-2">{passwordMsg}</p>}
-                </div>
+              <>
+                <p>
+                  <strong>Title:</strong> {formData.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {formData.email}
+                </p>
+                <p>
+                  <strong>Address:</strong> {formData.address}
+                </p>
+                <p>
+                  <strong>Price:</strong> ${formData.price}
+                </p>
+                <p>
+                  <strong>Calendly:</strong> {formData.calendly_url}
+                </p>
+                <p>
+                  <strong>Rating:</strong> {formData.rating}
+                </p>
+                <p>
+                  <strong>Cuisine:</strong> {formData.cuisine}
+                </p>
+              </>
             )}
-        </div>
+            <button
+              className="btn btn-danger"
+              onClick={() => setEditMode(true)}
+            >
+              Edit Profile
+            </button>
+          </div>
+        ) : (
+          <div className="mb-4">
+            {profile.role === "user" ? (
+              <>
+                <label>Name</label>
+                <input
+                  name="name"
+                  className="form-control mb-2"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <label>Email</label>
+                <input
+                  name="email"
+                  className="form-control mb-2"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </>
+            ) : (
+              <>
+                <label>Title</label>
+                <input
+                  name="name"
+                  className="form-control mb-2"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <label>Email</label>
+                <input
+                  name="email"
+                  className="form-control mb-2"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                <label>Address</label>
+                <input
+                  name="address"
+                  className="form-control mb-2"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+                <label>Price</label>
+                <input
+                  name="price"
+                  type="number"
+                  className="form-control mb-2"
+                  value={formData.price}
+                  onChange={handleChange}
+                />
+                <label>Calendly URL</label>
+                <input
+                  name="calendly_url"
+                  className="form-control mb-2"
+                  value={formData.calendly_url}
+                  onChange={handleChange}
+                />
+                <label>Rating</label>
+                <input
+                  name="rating"
+                  className="form-control mb-2"
+                  value={formData.rating}
+                  onChange={handleChange}
+                />
+                <label>Cuisine</label>
+                <input
+                  name="cuisine"
+                  className="form-control mb-2"
+                  value={formData.cuisine}
+                  onChange={handleChange}
+                />
+              </>
+            )}
+            <button className="btn btn-danger me-2" onClick={saveChanges}>
+              Save Changes
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => setEditMode(false)}
+            >
+              Cancel
+            </button>
+            {updateMsg && <p className="mt-2">{updateMsg}</p>}
+            <hr />
+            <h5>Change Password</h5>
+            <input
+              type="password"
+              placeholder="Current Password"
+              className="form-control mb-2"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="New Password"
+              className="form-control mb-2"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <button className="btn btn-danger" onClick={handlePasswordChange}>
+              Update Password
+            </button>
+            {passwordMsg && <p className="mt-2">{passwordMsg}</p>}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

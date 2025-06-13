@@ -14,6 +14,8 @@ export const TruckersignUp = () => {
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [rating, setRating] = useState("");
+  const [cuisine, setCuisine] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -32,6 +34,8 @@ export const TruckersignUp = () => {
           picture,
           is_active,
           calendly_url,
+          rating: parseFloat(rating) || 0,
+          cuisine: cuisine || "",
         }),
       }
     );
@@ -125,6 +129,29 @@ export const TruckersignUp = () => {
             placeholder="Calendly_url"
             value={calendly_url}
             onChange={(e) => setCalendly_url(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="text-white">Rating:</label>
+          <input
+            type="number"
+            step="0.1"
+            min="0"
+            max="5"
+            id="rating"
+            placeholder="Rating (0.0 - 5.0)"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="text-white">Cuisine:</label>
+          <input
+            type="text"
+            id="cuisine"
+            placeholder="Cuisine type"
+            value={cuisine}
+            onChange={(e) => setCuisine(e.target.value)}
           />
         </div>
         <button type="Submit">SIGN UP</button>
